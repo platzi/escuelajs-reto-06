@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 class MapContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: false };
-    this.handleClick = this.handleClick.bind(this);
-  }
+  state = { show: true };
 
-  handleClick() {
-    this.setState(state => ({
-      show: !state.show,
-    }));
-  }
+  handleClick = () => {
+    this.setState({ show: !this.state.show });
+  };
 
   render() {
     return (
