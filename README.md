@@ -1,6 +1,8 @@
 # Escuelajs-reto-06
 Reto 6 Octubre 5: Curso Práctico de React JS
 
+## Platzi Maps
+
 Tenemos un proyecto web, donde debemos trabajar con la API de Google de mapas, tenemos que mostrar en un Mapa las ubicaciones de las oficinas de Platzi.
 
 ![Google-maps](https://raw.githubusercontent.com/platzi/escuelajs-reto-06/master/screenshot.png?token=ACQQY5TB2DOOKO5CD7LURB25UFNGK)
@@ -32,7 +34,7 @@ Importar React y el paquete [google-maps-react](https://www.npmjs.com/package/go
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 ```
-Creamos un componente llamada MapContainer donde vamos a crear la lógica para crear un mapa de Google Maps.
+Creamos un componente llamado MapContainer donde vamos a crear la lógica para crear un nuevo mapa.
 
 ```javascript
 const MapContainer = ({ google }) => {
