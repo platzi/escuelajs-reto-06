@@ -26,7 +26,9 @@ export class MapContainer extends Component {
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
         >
           
-    
+          <Marker
+            name={'Platzi Bogota'}
+            position={{lat: 4.6560716, lng: -74.0595918}} />
 
           <Marker
             name={'Platzi México'}
