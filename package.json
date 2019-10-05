@@ -24,10 +24,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "google-maps-react": "^2.0.2",
     "html-loader": "^0.5.5",
@@ -42,7 +40,14 @@
     "webpack-cli": "^3.3.9"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^4.3.0",
