@@ -7,10 +7,10 @@ Usuario Platzi:
 
 ## Ciudad
 - [ ] Ciudad de México
-- [ ] Bogotá
+- [X] Bogotá
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
-  - [ ] Cuarto Problema (Opcional)
+  - [X] Primer problema
+  - [X] Segundo problema
+  - [X] Tercer problema
+  - [X] Cuarto Problema (Opcional)
