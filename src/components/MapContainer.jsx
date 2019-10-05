@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const MapContainer = ({ google }) => {
+const MapContainer = ({ google, markersProps }) => {
+  let markerItems;
+  const [markers, setMarkers] = useState([]);
+
+  useEffect(() => {
+    markerItems = markersProps.map(marker => (
+      <Marker
+        name={marker.venueName}
+        position={{ lat: marker.venueLat, lng: marker.venueLon }}
+        key={marker.venueName}
+      />
+    ));
+    setMarkers(markerItems);
+  }, []);
+
   return (
     <Map
       google={google}
       zoom={4}
       initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
     >
-      <Marker
-        position={{ lat: 19.4267261, lng: -99.1718706 }}
-      />
-      <Marker
-        position={{ lat: 4.6560716, lng: -74.0595918 }}
-      />
+      {markers}
     </Map>
   );
-}
+};
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
+  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw',
 })(MapContainer);
