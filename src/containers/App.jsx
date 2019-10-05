@@ -4,7 +4,7 @@ import '../styles/containers/App.styl';
 
 const App = () => {
   const API = 'http://localhost:3000/locations';
-  const [showMap, setShowMap] = useState(true);
+  const [showMap, setShowMap] = useState(false);
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
