@@ -2,15 +2,15 @@
 
 Solución al reto 05 de Escuela de JavaScript
 
-Nombre:
-Usuario Platzi:
+Nombre: adrian camilo parra caminos
+Usuario Platzi: adrianhorizon
 
 ## Ciudad
 - [ ] Ciudad de México
-- [ ] Bogotá
+- [ x ] Bogotá
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
+  - [ x ] Primer problema
+  - [ x ] Segundo problema
+  - [ x ] Tercer problema
   - [ ] Cuarto Problema (Opcional)
