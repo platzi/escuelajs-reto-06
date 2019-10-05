@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const MapContainer = ({ google }) => {
-  return (
-    <Map
-      google={google}
-      zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-    >
-      <Marker
-        position={{ lat: 19.4267261, lng: -99.1718706 }}
-      />
-    </Map>
-  );
+class MapContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      show: !state.show,
+    }));
+  }
+
+  render() {
+    return (
+      <>
+        <button onClick={this.handleClick}>Show!!!!</button>
+        {this.state.show ? (
+          <Map
+            google={this.props.google}
+            zoom={5}
+            initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+          >
+            <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
+            <Marker position={{ lat: 4.6560716, lng: -74.0595918 }} />
+          </Map>
+        ) : (
+          <h1>Para mostrar el mapa necesitas presionarl el boton ☝🏼</h1>
+        )}
+      </>
+    );
+  }
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
+  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw',
 })(MapContainer);
