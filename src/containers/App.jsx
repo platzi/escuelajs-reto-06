@@ -5,7 +5,12 @@ import '../styles/containers/App.styl';
 const App = () => {
   return (
     <div className="App">
+
+      <h1>CONTACTO</h1>
+
       <MapContainer />
+
+
     </div>
   )
 };
