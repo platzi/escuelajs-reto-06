@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 
 class MapContainer extends React.Component {
@@ -7,6 +7,9 @@ class MapContainer extends React.Component {
     super(props);
     this.state = {
       isShow: false,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
     };
   }
 
@@ -14,6 +17,24 @@ class MapContainer extends React.Component {
     e.preventDefault();
     this.setState(state => ({ isShow: !state.isShow }));
   }
+
+  onMarkerClick = (props, marker, e) =>{
+    console.log('hola')
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
   render() {
     const {google, markers} = this.props;
@@ -28,10 +49,21 @@ class MapContainer extends React.Component {
             google={google}
             zoom={5}
             initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+            onClick={this.onMapClicked}
           >
-            {markers.map((item, i) => <Marker key={i} position={{ lat: item.venueLat, lng: item.venueLon }} /> )}            
-          </Map>
+            {markers.map((item, i) => <Marker key={i} name={item.venueName} position={{ lat: item.venueLat, lng: item.venueLon }} onClick={this.onMarkerClick} /> )}            
+
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
+            </InfoWindow>
+          </Map>          
         )}
+
+        
         
       </>
     );
