@@ -19,7 +19,6 @@ class App extends Component {
     const { isShow } = this.state;
     
     this.setState({ isShow: !isShow, });
-    console.log(isShow)
   }
   
   componentDidMount =() =>{
