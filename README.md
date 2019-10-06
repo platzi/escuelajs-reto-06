@@ -93,10 +93,10 @@ npm run server
 
 ### Cuarto Problema (Opcional)
 
-Ahora que tenemos nuestra aplicación Funcionando, utiliza la documentación del paquete instalado para aprender e implementar un 'infoView' por cada ubicación de Platzi
+Ahora que tenemos nuestra aplicación Funcionando, utiliza la documentación del paquete instalado para aprender e implementar un 'InfoWindow' por cada ubicación de Platzi
 
-1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar 'infoView'
-2) Implementa un 'infoView' por cada ubicación debes de utilizar la información de la FAKE API.
+1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar 'InfoWindow'
+2) Implementa un 'InfoWindow' por cada ubicación debes de utilizar la información de la FAKE API.
 3) Muestra el nombre de la oficina de Platzi al dar clic en el Maker.
 
 
