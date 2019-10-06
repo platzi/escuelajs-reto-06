@@ -16,19 +16,7 @@ class App extends React.Component {
    const fetch2= await fetch(API);
    const data = await fetch2.json();
    this.setState({ info: data });
-   console.log("hola")
-   console.log(this.state.info);
-
-      // .then(response => {
-      //   return response.json();
-      // })
-      // .then(data => {
-
-      //   this.setState({ info: data });
-      //   console.log(`Hola ${this.state.info}`);
-
-      // })
-      // .catch(error => console.log(error));
+ 
   }
 
   render() {
