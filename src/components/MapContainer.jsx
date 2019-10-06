@@ -1,22 +1,58 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import InformationContainer from './InformationContainer';
 import '../styles/containers/App.styl';
 
-// eslint-disable-next-line react/prefer-stateless-function
+/**
+ * Main component that render Map.
+ *
+ */
 class MapContainer extends React.Component {
+  state = {
+    showInfo: false,
+    activeMarker: {},
+    locationSelected: {},
+  };
+
+/**
+ * Handle the state InfoWindow
+ * 
+ * @param {props} first Data of location
+ * @param {marker} second Marker that was clicked
+ */
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+        locationSelected: props,
+        activeMarker: marker,
+        showInfo: true
+      }
+    );
+  };
+
   render() {
-    const {google,show} = this.props;
+    const {activeMarker, showInfo, locationSelected}=this.state;
+    const {google,show, locations} = this.props;
+    
+    const markers = locations.map((location) => {
+      return <Marker onClick={this.onMarkerClick} key={location.id} name={location.venueName} position={{ lat: location.venueLat, lng: location.venueLon}} />
+    });
+  
     return (
       <Map
-        // eslint-disable-next-line react/destructuring-assignment
         google={google} 
-        zoom={5}
+        zoom={4}
         initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
         visible={show}
       >
-        <Marker
-          position={{ lat: 19.4267261, lng: -99.1718706 }}
-        />
+        {markers}
+        <InfoWindow
+          marker={activeMarker}
+          visible={showInfo}
+        >
+          <InformationContainer 
+            name={locationSelected.name} 
+          />
+        </InfoWindow>
       </Map>
     );
   };
