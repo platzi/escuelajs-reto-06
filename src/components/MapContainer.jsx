@@ -5,7 +5,7 @@ const MapContainer = ({ google }) => {
   return (
     <Map
       google={google}
-      zoom={5}
+      zoom={6}
       initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
     >
       <Marker
