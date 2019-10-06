@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import fetch from 'node-fetch';
 import MapContainer from '../components/MapContainer';
+import getMarkers from '../helpers/getMarkers';
 import '../styles/containers/App.styl';
 
 const API = `http://localhost:3000/locations`;
@@ -16,27 +16,10 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const response = await this.getMarkers();
+    const response = await getMarkers(API);
     this.setState({
       markers: response,
     });
-  }
-
-  async getMarkers() {
-    try {
-      const response = await fetch(API, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (!response.ok) {
-        return Promise.reject(new Error(`Error fetching url: ${API}`));
-      }
-
-      return Promise.resolve(await response.json());
-    } catch (error) {
-      return Promise.reject(new Error(error.message));
-    }
   }
 
   toggleMap() {
