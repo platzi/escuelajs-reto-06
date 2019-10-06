@@ -1,11 +1,13 @@
 import React from 'react';
-import MapContainer from "../components/MapContainer";
-import '../styles/containers/App.styl';
+import Layout from "../components/Layout";
+
 
 const App = () => {
   return (
     <div className="App">
-      <MapContainer />
+      <Layout />
+      
+
     </div>
   )
 };
