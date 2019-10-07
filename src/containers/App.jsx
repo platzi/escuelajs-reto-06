@@ -9,7 +9,7 @@ const App = () => {
       <MapTitle />
       <MapContainer />
     </div>
-  )
-};
+  );
+}
 
 export default App;

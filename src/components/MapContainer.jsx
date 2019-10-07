@@ -1,37 +1,39 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import MapButton from '../components/MapButton';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-export class MapContainer extends Component {
-  state = {
-    show : false
+import useLocation from '../hooks/useLocation';
+const API = 'http://localhost:3000/locations';
+
+const MapContainer = ({ google }) => {
+  const [ showMap, setShowMap ] = useState(false);
+
+  const toggleMap = () => {
+    const stateMap = showMap ? false : true;
+    setShowMap(stateMap);
   }
-  toggleMap = () => {
-    const stateMap = this.state.show ? false : true
-    this.setState({show: stateMap})
-  }
-  render () {
-    return (
-      <div>
-        <Map
-          google={this.props.google}
-          style={{width: '100%', height: '400px', position: 'relative'}}
-          className={'map'}
-          zoom={4}
-          initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-          visible={this.state.show}
-        >
+
+  const locations = useLocation(API);
+  return (
+    <div>
+      <MapButton toggleMap={toggleMap} isMapVisible={showMap} />
+      <Map
+        google={google}
+        style={{width: '100%', height: '400px', position: 'relative'}}
+        className={'map'}
+        zoom={4}
+        initialCenter={{ lat: 15.1701174, lng: -89.5346629 }}
+        visible={showMap}
+      >
+        {locations.map(item =>
           <Marker
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
+            key={item.venueName}
+            position={{lat: item.venueLat, lng: item.venueLon}}
           />
-          <Marker
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
-        </Map>
-        <MapButton toggleMap={this.toggleMap} isMapVisible={this.state.show} />
-      </div>
-    )
-  }
+        )}
+      </Map>
+    </div>
+  )
 }
 
 export default GoogleApiWrapper({
