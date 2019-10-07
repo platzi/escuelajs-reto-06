@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 const FinalMapContainer = ({ google, markers }) => {
-
   const [state, setState] = useState({
     show: true,
   });
-  
+
   const [infoWindow, setInfoWindow] = useState({
     showingInfoWindow: false,
     activeMarker: {},
@@ -28,7 +27,7 @@ const FinalMapContainer = ({ google, markers }) => {
       showingInfoWindow: true,
     });
 
-  const onMapClicked = (props)=> {
+  const onMapClicked = props => {
     if (infoWindow.showingInfoWindow) {
       setInfoWindow({
         selectedPlace: props,
