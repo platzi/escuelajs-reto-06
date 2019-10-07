@@ -47,6 +47,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
-    }),
+    })
   ],
 };
