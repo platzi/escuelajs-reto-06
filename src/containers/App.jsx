@@ -1,13 +1,13 @@
 import React from 'react';
-import MapContainer from "../components/MapContainer";
+import Contact from '../components/Contact';
 import '../styles/containers/App.styl';
 
 const App = () => {
   return (
     <div className="App">
-      <MapContainer />
+      <Contact />
     </div>
-  )
+  );
 };
 
 export default App;
