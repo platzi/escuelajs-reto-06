@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --open --mode development",
     "server": "json-server locations.json",
     "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
-    "lint": "eslint src/ --fix"
+    "lint": "eslint src/ --fix",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
+    "gh-pages": "^2.1.1",
     "json-server": "^0.15.1",
     "prettier": "^1.18.2",
     "webpack-dev-server": "^3.8.1"
