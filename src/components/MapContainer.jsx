@@ -1,13 +1,16 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class MapContainer extends Component {
   state = { 
     // eslint-disable-next-line react/no-unused-state
     google,
     visibility: false,
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
   }
 
   toggleMap = () => {
@@ -24,9 +27,24 @@ class MapContainer extends Component {
     });
   }
 
+  onMarkerClick = (props, marker) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+ 
+  onMapClicked = ({showingInfoWindow}) => {
+    if (showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
   render() {
-    const {visibility} = this.state;
+    const {visibility, google, activeMarker, showingInfoWindow, selectedPlace} = this.state;
     const {locations} = this.props;
 
     return (
@@ -35,10 +53,20 @@ class MapContainer extends Component {
         {visibility && (
           <Map
             google={google}
+            onClick={this.onMapClicked}
             zoom={4}
             initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           > 
-            {locations.map((marker) => <Marker key={marker.venueName} position={{ lat: marker.venueLat, lng: marker.venueLon }} />)}
+            {locations.map((marker) => <Marker onClick={this.onMarkerClick} key={marker.venueName} position={{ lat: marker.venueLat, lng: marker.venueLon }} name={marker.venueName} />)}
+
+            <InfoWindow
+              marker={activeMarker}
+              visible={showingInfoWindow}
+            >
+              <div>
+                <h1>{selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
           </Map>
         )}
       </>
