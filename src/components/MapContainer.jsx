@@ -14,18 +14,16 @@ class MapContainer extends Component {
     return (
       <>
         <button onClick={this.toggleMapVisibility}>{show?'Hide':'Show map'}</button>
-        {
-          show &&
-          <Map
-            google={google}
-            zoom={5}
-            initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-          >
-            <Marker
-              position={{ lat: 19.4267261, lng: -99.1718706 }}
-            />
-          </Map>
-        }
+        <Map
+          visible={show}
+          google={google}
+          zoom={5}
+          initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+        >
+          <Marker
+            position={{ lat: 19.4267261, lng: -99.1718706 }}
+          />
+        </Map>
       </>
     );
   }
