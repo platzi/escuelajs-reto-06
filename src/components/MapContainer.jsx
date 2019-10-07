@@ -9,7 +9,7 @@ class MapContainer extends Component {
     this.setState({show:!this.state.show})
   }
   render(){
-    const { google } = this.props;
+    const { google, locations } = this.props;
     const { show } = this.state;
     return (
       <>
@@ -20,12 +20,15 @@ class MapContainer extends Component {
           zoom={5}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
         >
-          <Marker
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
+          {
+            locations.length>0 &&
+            locations.map( location => (
+              <Marker
+                key={location.venueName}
+                position={{ lat: location.venueLat, lng: location.venueLon }}
+              />
+            ))
+          }
         </Map>
       </>
     );
