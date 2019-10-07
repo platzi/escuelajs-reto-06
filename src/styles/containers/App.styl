@@ -1,8 +1,91 @@
 body
-  background-color white
+  background-color #223946
   margin 0
   padding 0
-
-section
-  margin 0
-  paddin 0
+  font-family 'Roboto'
+  color white
+  .popup
+    width 250px
+    height 200px
+    position relative
+    margin 0 
+    padding 0
+    overflow hidden
+    img 
+      width 250px
+      height 250px
+      margin 0 0 10px 0
+      padding 0
+    span 
+      z-index 2
+      position absolute
+      bottom 0
+      font-size 1.2em 
+      left 0
+      right 0
+      font-weight bold
+      margin 0
+      padding 3px 10px
+      background-color #223946
+  .App
+    display flex 
+    &-image
+      padding 0
+      display flex
+      justify-content: center
+      align-items: center
+      height 100vh
+      width 50%
+      img 
+        width 100%
+        margin 0 
+        padding 0
+    &-info 
+      display flex 
+      justify-content: flex-start 
+      align-items: flex-start
+      width 45%
+      flex-direction column
+      padding 20px
+      h1, h2
+        color #94CA3D
+        text-transform uppercase
+        padding 0 10px
+      h2
+        text-transform none
+      p 
+        text-align justify
+        padding 0 10px
+        margin 0 0 15px 0
+      form
+        display flex
+        flex-direction column
+        width 100%
+        input 
+          padding 10px
+          margin 10px
+          border none 
+          border-radius 25px
+          font-size 1.1em
+          width 90%
+          &::placeholder 
+            color gray
+            opacity .5
+        input[type="submit"]
+          width 50%
+          margin 10px auto
+          background-color #94CA3D
+          color white
+          border-radius 8px
+      button
+        background-color #94CA3D
+        color white
+        font-size 1.2em 
+        border none 
+        border-radius 5px 
+        outline none
+        padding 5px 20px
+        margin 15px 0 0 10px
+        transition .5s
+        &:active 
+          transform scale(.9)

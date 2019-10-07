@@ -1,14 +1,21 @@
 {
   "locations": [
     {
+      "id": 1,
       "venueLat": 19.42672619,
       "venueLon": -99.1718706,
-      "venueName": "Platzi HQ CDMX"
+      "venueName": "Platzi HQ CDMX",
+      "image": "https://static.platzi.com/media/user_upload/12_oficina_platzi_sf-78dee576-c4cf-404a-b880-dab7ce20fa59.jpg",
     },
     {
+      "id": 2,
       "venueLat": 4.6560716,
       "venueLon": -74.0595918,
-      "venueName": "Platzi HQ Bogota"
+      "venueName": "Platzi HQ Bogota",
+      "image": "https://pbs.twimg.com/media/Dn-5q0KW0AYg6p2.jpg",
     }
-  ]
+  ],
+  "showmap": {
+    "map": false
+  }
 }
