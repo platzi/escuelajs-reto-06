@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import Contact from '../components/Contact';
 import Maps from '../components/Map';
+import Image from '../components/Image';
 import initialState from '../hooks/useInitialState';
 import '../styles/containers/App.styl';
 
 const App = () => {
+
   const data = initialState('http://localhost:3000/locations');
-  const [view, setView] = useState(true);
+  const [info, changeData] = useState({
+    map: false,
+    titleButton: 'Ver mapa',
+  });
+
   const toggleMap = () => {
-    setView(!view);
+    changeData({
+      map: !info.map,
+      titleButton: info.map === true ? 'Ver mapa' : 'Ocultar mapa',
+    });
   };
+
   return (
     <div className="App">
-      <Contact show={view.map} toggle={toggleMap} />
-      {view && <Maps map={data} />}
+      <Contact show={info.map} toggle={toggleMap} info={info} />
+      {info.map ? <Maps map={data} info={info} /> : <Image/> }
     </div>
   );
 };

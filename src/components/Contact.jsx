@@ -10,18 +10,11 @@ const Contact = props => {
         <input type="text" placeholder="Apellidos" />
         <input type="text" placeholder="Correo electrónico" />
         <input type="text" placeholder="Número de contacto" />
+        <input type="submit" value="Enviar" />
         <h2>Ubica nuestras sedes</h2>
-        <p>Selecciona las sedes que quieres visualizar en el mapa</p>
-        <label htmlFor="bog">
-          <input type="checkbox" name="bog" id="bog" />
-          <div className="slide round">Bogotá</div>
-        </label>
-        <label htmlFor="mx">
-          <input type="checkbox" name="mx" id="mx" />
-          <div className="slide round">CDMX</div>
-        </label>
       </form>
-      <button onClick={() => props.toggle()}>Ver mapa</button>
+      <p>Puedes ver la ubicación de nuestras sedes haciendo clic en el siguiente botón</p>
+      <button onClick={() => props.toggle()}>{props.info.titleButton}</button>
     </div>
   );
 };

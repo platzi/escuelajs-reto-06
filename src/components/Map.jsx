@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import icon from '../static/location.png';
 
 const Maps = props => {
   const infoMap = props.map;
@@ -23,7 +24,6 @@ const Maps = props => {
         initialCenter={{ lat: 10.5943885, lng: -60.9526044 }}
       >
         {infoMap.map(item => {
-          if (item.visible === true) {
             return (
               <Marker
                 key={item.id}
@@ -35,13 +35,12 @@ const Maps = props => {
                 }}
                 icon={{
                   url:
-                    'https://img13.androidappsapk.co/300/1/f/b/com.platzi.platzi.png',
+                  icon,
                   anchor: new google.maps.Point(16, 16),
-                  scaledSize: new google.maps.Size(25, 25),
+                  scaledSize: new google.maps.Size(25, 30),
                 }}
               />
             );
-          }
         })}
         <InfoWindow marker={info.marker} visible={info.isOpen}>
           <div className="popup">
