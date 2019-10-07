@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MapContainer from '../components/MapContainer';
+import Loading from '../components/Loading';
+import NoMap from '../components/NoMap';
 import getMarkers from '../helpers/getMarkers';
 import '../styles/containers/App.styl';
 
@@ -10,6 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       show: false,
+      isLoading: true,
       markers: [],
     };
     this.toggleMap = this.toggleMap.bind(this);
@@ -19,6 +22,7 @@ class App extends Component {
     const response = await getMarkers(API);
     this.setState({
       markers: response,
+      isLoading: false,
     });
   }
 
@@ -29,17 +33,22 @@ class App extends Component {
   }
 
   render() {
-    const { show, markers } = this.state;
+    const { show, markers, isLoading } = this.state;
 
     return (
       <div className="App">
-        <button type="button" className="App__button" onClick={this.toggleMap}>
-          {show ? 'Mostrar mapa' : 'Ocultar mapa'}
-        </button>
-        {show ? (
-          <p>¿Mapa? ¿Qué mapa? Yo no veo ningún mapa</p>
-        ) : (
-          <MapContainer markersProps={markers} />
+        {isLoading && <Loading />}
+        {!isLoading && (
+          <React.Fragment>
+            <button
+              type="button"
+              className="App__button"
+              onClick={this.toggleMap}
+            >
+              {show ? 'Mostrar mapa' : 'Ocultar mapa'}
+            </button>
+            {!show ? <MapContainer markersProps={markers} /> : <NoMap />}
+          </React.Fragment>
         )}
       </div>
     );
