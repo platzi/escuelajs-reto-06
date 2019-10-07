@@ -18,6 +18,8 @@ class MapContainer extends Component {
     };
 
     this.MARKERS_API = 'http://localhost:3000/locations';
+
+    // this.MARKERS_API = 'https://my-json-server.typicode.com/gabrielpintop/platzi-markers-locations/locations';
   }
 
   componentDidMount() {
