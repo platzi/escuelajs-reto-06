@@ -34,22 +34,81 @@ Importar React y el paquete [google-maps-react](https://www.npmjs.com/package/go
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 ```
-Creamos un componente llamado MapContainer donde vamos a crear la lógica para crear un nuevo mapa.
+
+Creamos un componente de clase llamado MapContainer que contiene la lógica para presentar un mapa que muestra las oficinas de Platzi según la información de la FakeApi.
+
+Adicionalmente dentro de este componente estamos invocando al componente 'ButtonShow' el cual se encarga de mostrar u ocultar el mapa.
+
+En las ubicaciones presentadas, estamos haciendo uso de 'InfoWindow' que responde al evento del click del marker para mostrar el nombre de la oficina.
 
 ```javascript
-const MapContainer = ({ google }) => {
-  return (
-    <Map
-      google={google}
-      zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-    >
-      <Marker
-        position={{ lat: 19.4267261, lng: -99.1718706 }}
-      />
-    </Map>
-  );
+import React from 'react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import ButtonShow from './ButtonShow';
+
+class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.google = props.google;
+    this.state = { 
+      show: false,
+      showInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+    };
+
+    this.handleShowChange = this.handleShowChange.bind(this);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+  }
+
+  onMarkerClick(propsMarker, marker) {
+    this.setState({
+      selectedPlace: propsMarker,
+      activeMarker: marker,
+      showInfoWindow: true,
+    });
+  }
+  
+  handleShowChange(value) {
+    this.setState({ show: value });
+  }
+
+  render() {
+    const { show, activeMarker,showInfoWindow, selectedPlace } = this.state;
+    return (
+      <>
+        <ButtonShow show={show} onShowChange={this.handleShowChange} />
+        {show && (
+          <Map
+            google={this.google}
+            zoom={4}
+            initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+          >
+            {this.props.locations.map(item => {
+              return (
+                <Marker
+                  key={item.venueName}
+                  title={item.venueName}
+                  name={item.venueName}
+                  position={{ lat: item.venueLat, lng: item.venueLon }}
+                  onClick={this.onMarkerClick}
+                />
+              );
+            })}
+            <InfoWindow marker={activeMarker} visible={showInfoWindow}>
+              <div><h3>{selectedPlace.name}</h3></div>
+            </InfoWindow>
+          </Map>
+        )}
+      </>
+    );
+  }
 }
+
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw',
+})(MapContainer);
 ```
 
 Utilizamos GoogleApiWrapper que es un HOC (Higher-Order component) acepta un objeto que contiene el apiKey.
@@ -59,6 +118,65 @@ export default GoogleApiWrapper({
   apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
 })(MapContainer);
 ```
+
+Creamos el componente de clase 'ButtonShow' en el cual hacemos uso del levantamiendo de estado, para modificar el estado del componente 'MapContainer' por medio del evento de onClick el cual invoca al hanlde 'handleShowChange' del componente 'MapContainer' que le llega en los props al componente ButtonShow
+
+```javascript
+import React from 'react';
+import '../styles/components/ButtonShow.styl';
+
+class ButtonShow extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.onShowChange(!this.props.show);
+  }
+
+  render() {
+    const labelButton = this.props.show? 'Ocultar' : 'Mostrar';
+
+    return (
+      <button type="button" className="button-show" onClick={this.handleClick}>
+        {labelButton}
+      </button>
+    );
+  }
+}
+
+export default ButtonShow;
+```
+
+En el componente 'App' hacemos el llamado de la FakeApi por medio de fetch
+
+```javascript
+import React, { useState, useEffect } from 'react';
+import MapContainer from "../components/MapContainer";
+import '../styles/containers/App.styl';
+
+const App = () => {
+  const [points, setPoints] = useState([]);
+  const API = 'http://localhost:3000/locations';
+  
+  useEffect(() => { 
+    fetch(API)
+    .then(response => response.json())
+    .then(data => setPoints(data))
+    .catch(error => {throw new Error(error)});
+  }, []);
+
+  return (
+    <div className="App">
+      <MapContainer locations={points} />
+    </div>
+  )
+};
+
+export default App;
+```
+
 
 ## RETO
 
