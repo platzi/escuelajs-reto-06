@@ -69,6 +69,7 @@ Necesitamos que nuestra aplicación tenga una sección de contacto con un mapa d
 2) Añadir 'show' en 'false' en el estado de la aplicación
 3) Agregar un botón que muestre y oculte el mapa.
 
+
 ### Segundo Problema
 
 Tenemos por defecto en nuestra Mapa la Ubicación de Platzi HQ México, debemos de añadir al mapa la Ubicación de Platzi HQ Bogotá.

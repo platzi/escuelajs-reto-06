@@ -8,7 +8,7 @@ class MapContainer extends Component {
     return (
       <Map
         google={google}
-        zoom={4}
+        zoom={6}
         initialCenter={{ lat: 4.6560716, lng: -74.0595918 }}
       >
         <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
