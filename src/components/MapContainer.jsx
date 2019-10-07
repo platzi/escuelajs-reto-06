@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 const MapContainer = ({ google, markersProps }) => {
-  let markerItems;
   const [markers, setMarkers] = useState([]);
+  const [venue, setVenue] = useState({});
+
+  const showInfoWindow = marker => {
+    setVenue(marker);
+  };
 
   useEffect(() => {
-    markerItems = markersProps.map(marker => (
+    const markerItems = markersProps.map(marker => (
       <Marker
         name={marker.venueName}
         position={{ lat: marker.venueLat, lng: marker.venueLon }}
         key={marker.venueName}
+        onClick={showInfoWindow}
       />
     ));
+
     setMarkers(markerItems);
   }, []);
 
@@ -23,6 +29,13 @@ const MapContainer = ({ google, markersProps }) => {
       initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
     >
       {markers}
+      {markers && (
+        <InfoWindow position={venue.position} visible>
+          <div>
+            <h1>{venue.name}</h1>
+          </div>
+        </InfoWindow>
+      )}
     </Map>
   );
 };
