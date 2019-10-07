@@ -76,7 +76,75 @@ Tenemos por defecto en nuestra Mapa la Ubicación de Platzi HQ México, debemos 
 
 1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar multiples Markers
 2) Agrega Platzi HQ Bogotá: LAT: 4.6560716 LON: -74.0595918
+## SOLUCION A PRIMERO Y SEGUNDO PROBLEMA:
+```js
+//MapContainer.jsx
+const MapContainer = ({ google }) => {
+  return (
+    <Map
+      google={google}
+      zoom={5}
+      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+    >
+      <Marker
+        position={{ lat: 19.4267261, lng: -99.1718706 }}
+      />
+    </Map>
+  );
+}
+```
+cambio 
+```js
+class MapContainer extends Component {
+  render() {
+    const { google } = this.props;
+    return (
+      <Map
+        google={google}
+        zoom={4}
+        initialCenter={{ lat: 4.6560716, lng: -74.0595918 }}
+      >
+        <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
+        <Marker position={{ lat: 4.6560716, lng: -74.0595918 }} />
+      </Map>
+    );
+  }
+}
+``` //App.jsx
+```js
+import React from 'react';
+import MapContainer from "../components/MapContainer";
+import '../styles/containers/App.styl';
 
+const App = () => {
+  return (
+    <div className="App">
+      <MapContainer />
+    </div>
+  )
+};
+
+export default App;
+// ********************SOLUCION*************
+import React, { useState } from 'react';
+import MapContainer from '../components/MapContainer';
+import '../styles/containers/App.styl';
+
+const App = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => {
+    setShow(!show);
+  };
+  return (
+    <div className="App">
+      <button className='boton' onClick={handleClick}> {show ? 'Ocultar Mapa' : 'Mostrar Mapa'} </button>
+      {show && <MapContainer />}
+    </div>
+  );
+};
+export default App;
+```
 ### Tercer Problema
 
 Ahora utiliza la API propuesta
@@ -86,7 +154,6 @@ Para ejecutar la Fake API debes de correr el siguiente comando:
 ```bash
 npm run server
 ```
-
 1) Inicia y analiza el funcionamiento de la FAKE API de 'locations'
 2) Haz un llamado a la API desde el proyecto por medio de fetch
 3) Por medio de 'props' pasa al componente 'MapContainer.jsx' el resultado de la consulta a la FAKE API.
