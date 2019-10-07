@@ -1,8 +1,119 @@
 body
-  background-color white
+  background-color #223946
   margin 0
   padding 0
-
-section
-  margin 0
-  paddin 0
+  font-family 'Roboto'
+  color white
+  .popup
+    width 250px
+    height 200px
+    position relative
+    margin 0 
+    padding 0
+    overflow hidden
+    img 
+      width 250px
+      height 250px
+      margin 0 0 10px 0
+      padding 0
+    span 
+      z-index 2
+      position absolute
+      bottom 0
+      font-size 1.2em 
+      left 0
+      right 0
+      font-weight bold
+      margin 0
+      padding 3px 10px
+      background-color #223946
+  .App
+    display flex 
+    &-info 
+      display flex 
+      justify-content: center 
+      align-items: flex-start
+      width 45%
+      flex-direction column
+      padding 20px
+      h1, h2
+        color #94CA3D
+        text-transform uppercase
+      h2
+        text-transform none
+        padding 0 10px
+      p 
+        text-align justify
+        padding 0 10px
+        margin 0 0 15px 0
+      form
+        display flex
+        flex-direction column
+        width 100%
+        input 
+          padding 10px
+          margin 10px
+          border none 
+          border-radius 25px
+          font-size 1.1em
+          width 90%
+          &::placeholder 
+            color gray
+            opacity .5
+        label
+          position relative
+          display inline-block
+          width 110px
+          height 34px
+          margin 10px
+          input 
+            display none
+          input:checked + .slide 
+            background-color #94CA3D
+            padding-left 40px
+          input:checked + .slide:before 
+            -webkit-transform translateX(26px)
+            -ms-transform translateX(26px)
+            transform translateX(26px)
+            left -20px
+          .slide 
+            position absolute
+            cursor pointer
+            top 0
+            left 0
+            right 0
+            bottom 0
+            background-color #ccc
+            -webkit-transition .4s
+            transition .4s
+            padding 8px
+            color #fff
+            border-radius 25px
+        .slide:before 
+            position absolute
+            content ""
+            height 26px
+            width 26px
+            left 78px
+            bottom 4px
+            background-color white
+            border-radius 50%
+            -webkit-transition .4s
+            transition .4s
+        
+      button
+        background-color #94CA3D
+        color white
+        font-size 1.2em 
+        border none 
+        border-radius 5px 
+        outline none
+        padding 5px 20px
+        margin 15px 0 0 10px
+        transition .5s
+        &:active 
+          transform scale(.9)
+    &-map 
+      background-color red
+    
+  
