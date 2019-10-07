@@ -47,8 +47,15 @@ class MapContainer extends Component {
             initialCenter={{ lat: this.state.lat, lng: this.state.lng }}
           >
             <Marker
+            title={'Platzi México'}
+            name={'Platzi México'}
             position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
+            />
+            <Marker
+            title={'Platzi HQ Bogotá'}
+            name={'Platzi HQ Bogotá'}
+            position={{ lat: 4.6560716, lng: -74.0595918 }}
+            />
           </Map>
         </div>
       </div>
