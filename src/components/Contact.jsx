@@ -7,8 +7,28 @@ class Contact extends React.Component {
     super(props);
     this.state = {
       showMap: false,
+      markers: [],
     };
+    this.MARKERS_API = 'http://localhost:3000/locations';
+
+    // this.MARKERS_API =
+    //   'https://my-json-server.typicode.com/gabrielpintop/platzi-markers-locations/locations';
   }
+
+  componentDidMount() {
+    this.loadMarkers();
+  }
+
+  loadMarkers = () => {
+    // eslint-disable-next-line no-undef
+    fetch(this.MARKERS_API)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          markers: data,
+        });
+      });
+  };
 
   showMap = () => {
     const { showMap } = this.state;
@@ -18,7 +38,7 @@ class Contact extends React.Component {
   };
 
   render() {
-    const { showMap } = this.state;
+    const { showMap, markers } = this.state;
     return (
       <section id="contact">
         <h1>Contacta a Platzi</h1>
@@ -33,7 +53,7 @@ class Contact extends React.Component {
             &nbsp;sedes
           </button>
         </div>
-        <MapContainer showMap={showMap} />
+        <MapContainer showMap={showMap} markers={markers} />
       </section>
     );
   }

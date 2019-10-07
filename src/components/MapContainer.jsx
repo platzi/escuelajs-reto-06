@@ -10,32 +10,12 @@ class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      markers: [],
     };
 
     this.containerMapStyle = {
       height: 450,
     };
-
-    this.MARKERS_API = 'http://localhost:3000/locations';
-
-    // this.MARKERS_API = 'https://my-json-server.typicode.com/gabrielpintop/platzi-markers-locations/locations';
   }
-
-  componentDidMount() {
-    this.loadMarkers();
-  }
-
-  loadMarkers = () => {
-    // eslint-disable-next-line no-undef
-    fetch(this.MARKERS_API)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          markers: data,
-        });
-      });
-  };
 
   onMarkerClick = (props, marker) => {
     this.setState({
@@ -56,13 +36,8 @@ class MapContainer extends Component {
   };
 
   render() {
-    const { showMap, google } = this.props;
-    const {
-      markers,
-      activeMarker,
-      showingInfoWindow,
-      selectedPlace,
-    } = this.state;
+    const { showMap, google, markers } = this.props;
+    const { activeMarker, showingInfoWindow, selectedPlace } = this.state;
     return (
       showMap &&
       (markers.length > 0 ? (
