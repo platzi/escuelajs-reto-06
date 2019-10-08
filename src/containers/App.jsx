@@ -22,7 +22,7 @@ const App = () => {
       {
         show && 
         <MapContainer locations={locs} />
-      } 
+      }
     </div>
   );
 };
