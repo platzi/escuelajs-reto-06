@@ -26,6 +26,11 @@ const MapContainer = ({ google }) => {
     setShowingInfoWindow(true)
   }
 
+  const onMapClicked = () => {
+    setActiveMarker(null)
+    setShowingInfoWindow(false)
+  }
+
   return (
     <>
       <button type='button' onClick={handleButton}>
@@ -33,6 +38,7 @@ const MapContainer = ({ google }) => {
       </button>
       {show && (
       <Map
+        onClick={onMapClicked}
         google={google}
         zoom={5}
         initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
