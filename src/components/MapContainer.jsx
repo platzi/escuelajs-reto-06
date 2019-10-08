@@ -1,32 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 const places = {
-  'bogota' : {
-    lat: 4.6560716,
-    lng: -74.0595918,
+  'bogota': {
+    'marker': {
+      lat: 4.6560716,
+      lng: -74.0595918,
+    },
+    'viewport': {
+      lat: 4.6943885,
+      lng: -74.0
+    }
   },
-  'mexico' : {
-    lat: 19.4267261,
-    lng: -99.1718706,
-  }
-}
-console.log(places.mexico);
-const MapContainer = ({ google }) => {
-  return (
-    //visto en el viewport
-    <Map
-      google={google}
-      zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}//punto central del mapa
-    >
-      <Marker
-        position={ places.mexico }//México
-      />
-    </Map>
-  );
+  'mexico': {
+    'maker': {
+      lat: 19.4267261,
+      lng: -99.1718706,
+    },
+    'viewport': {
+      lat: 19.5943885,
+      lng: -97.9526044
+    }
+  },
 }
 
+class MapContainer extends Component {
+
+  constructor() {
+    super();
+    this.state = { show: false }
+    
+  }
+  
+  hidder(){
+    this.setState({
+      show: false
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={()=>this.hidder()}>Hide Map</button>
+        {
+          this.state.show?
+            <Map
+          google={this.props.google}
+          zoom={5}
+          initialCenter={places.mexico.viewport}
+          >
+
+          <Marker
+            position={places.mexico.maker}
+            />
+        </Map>
+        : null
+        }
+      </div>
+    );
+  }
+}
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
 })(MapContainer);
