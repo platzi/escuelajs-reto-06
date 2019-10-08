@@ -1,12 +1,12 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import useFetchPlaces from '../hooks/useFetchPlaces';
 
-// = ({ google }) => 
 class MapContainer extends React.Component {
   state = {
     show: false,
     textButton: 'Mostrar Mapa',
-  }
+  };
 
   handleClick = () => {
     const { show } = this.state;
@@ -23,10 +23,40 @@ class MapContainer extends React.Component {
     }
   }
 
+  displayMakers = ()=> {
+    // const { locations } = this.state;
+    const locations =  useFetchPlaces('http://localhost:3000/locations');
+    // const locations = [
+    //   {
+    //     "venueLat": 19.42672619,
+    //     "venueLon": -99.1718706,
+    //     "venueName": "Platzi HQ CDMX"
+    //   },
+    //   {
+    //     "venueLat": 4.6560716,
+    //     "venueLon": -74.0595918,
+    //     "venueName": "Platzi HQ Bogota"
+    //   }
+    // ]
+    return locations.map( (location, index ) => {
+      return (
+        <Marker 
+          id={index}
+          key={index}
+          position={{
+            lat: location.venueLat,
+            lng: location.venueLon
+          }}
+          name={location.venueName}
+        />
+      )
+    });
+  };
+
   render() {
     const { google} = this.props;
     const { show, textButton } = this.state;
-
+    
     return (
       <div className="container">
         <Map
@@ -35,14 +65,7 @@ class MapContainer extends React.Component {
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
-          <Marker
-            title="Platzi México"
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            title="Agrega Platzi HQ Bogotá"
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
+          {this.displayMakers()}
         </Map>
         <div className="container_btn">
           <button className="btn_show" type="button" onClick={this.handleClick}>
