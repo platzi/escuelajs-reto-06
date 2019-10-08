@@ -1,46 +1,65 @@
-import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import React, { useState, useEffect } from 'react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
-class MapContainer extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      show: true
-    }
+const MapContainer = ({ google }) => {
+  const [show, setShow] = useState(false)
+  const [locations, setLocations] = useState([])
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false)
+  const [activeMarker, setActiveMarker] = useState({})
+  const [selectedPlace, setSelectedPlace] = useState({})
+
+  useEffect(() => {
+    window.fetch('http://localhost:3000/locations')
+      .then(res => res.json())
+      .then(response => setLocations(response))
+      .catch(e => window.console.log(e))
+  }, [])
+
+  const handleButton = (e) => {
+    e.preventDefault()
+    setShow(!show)
   }
 
-  render(){
-    const handleButton = () => {
-      this.setState((state) => {
-        return {show: !state.show}
-      })
-    }
+  const onMarkerClick = (props, marker) => {
+    setSelectedPlace(props)
+    setActiveMarker(marker)
+    setShowingInfoWindow(true)
+  }
 
-    return (
-      <>
-        <button onClick={handleButton}>{this.state.show ? 'ocultar mapa' : 'mostrar mapa'}</button>
-        
-        {this.state.show && (
-        <Map
-          google={this.props.google}
-          zoom={5}
-          initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+  return (
+    <>
+      <button type='button' onClick={handleButton}>
+        {show ? 'Ocultar mapa' : 'Mostrar mapa'}
+      </button>
+      {show && (
+      <Map
+        google={google}
+        zoom={5}
+        initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+      >
+        {locations.map((item) => {
+          return(
+            <Marker
+              key={item.venueName}
+              onClick={onMarkerClick}
+              name={item.venueName}
+              title={item.venueName}
+              position={{ lat: item.venueLat, lng: item.venueLon }}
+            />
+          )
+        })}
+        <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}
         >
-          <Marker
-            title="Platzi HQ México"
-            name="Platzi HQ México"
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            title="Platzi HQ Bogotá"
-            name="Platzi HQ Bogotá"
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
-        </Map>
-)}
-      </>
-    );
-  }
+          <div>
+            <h1>{selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
+      </Map>
+      )}
+    </>
+  );
 }
 
 export default GoogleApiWrapper({
