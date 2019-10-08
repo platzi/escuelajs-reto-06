@@ -1,13 +1,18 @@
 import React from 'react';
 import MapContainer from "../components/MapContainer";
-import MapTitle from '../components/MapTitle';
+import MapHeader from '../components/MapHeader';
+import useLocation from '../hooks/useLocation';
+
 import '../styles/containers/App.styl';
 
+const API = 'http://localhost:3000/locations';
+
 const App = () => {
+  const locations = useLocation(API);
   return (
-    <div className="App">
-      <MapTitle />
-      <MapContainer />
+    <div className="wrapper-contact">
+      <MapHeader />
+      <MapContainer locations={locations} />
     </div>
   );
 }
