@@ -1,0 +1,18 @@
+.boton {
+  width: 150px;
+  height: 40px;
+  background-color: #f00;
+  font-size: 20px;
+}
+
+body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+section {
+  margin: 0;
+  paddin: 0;
+  display: none;
+}
+
