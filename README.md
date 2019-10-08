@@ -1,10 +1,3 @@
-# El reto lo he completado.
-
-Si lo corres, en la consola del navegador hay un error"regeneratorRuntime is not defined".
-En App.jsx traté de usar Hooks de estado y de efecto junto con un fetch. Lo probé con un "npx create-react-app react-test" y creo no tener errores en la lógica.
-Si lo quieres ver funcionando, lo que puedes hacer es comentar los Hooks y creé una variable que se llama localizations la cual puedes quitarla de los comentarios.
-He implementado los hooks, por que he tenido la oportunidad de mantener algo de código en React Native y este me ha ayudado a llevar un código mas limpio y fácil a la prímera lectura.
-
 # Escuelajs-reto-06
 
 Reto 6 Octubre 5: Curso Práctico de React JS
