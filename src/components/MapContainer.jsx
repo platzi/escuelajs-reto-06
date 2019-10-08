@@ -7,14 +7,18 @@ class MapContainer extends Component {
     this.state = {
       google: this.props.google,
       visible: true,
-      text: "Show"
+      text: "Ocultar",
+      points: this.props.points
     }
+    console.log("-- Maping points")
+    console.log(this.state.points);
+    
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick () {
     let caption = "Mostrar";
-    if(this.state.visible) {
+    if(!this.state.visible) {
       caption = "Ocultar";
     } else {
       caption = "Mostrar";
@@ -39,24 +43,27 @@ class MapContainer extends Component {
         {
           this.state.visible && (
             <Map
-          
               google={this.state.google}
               zoom={5}
               initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
             >
-              <Marker
-                name="CDMX"
-                title="PLatzi CDMX"
-                position={{ lat: 19.4267261, lng: -99.1718706 }}
-              />
-              <Marker
-                name="Colombia"
-                title="PLatzi Bogotá"
-                position={{ lat: 4.6560716, lng: -74.0595918 }}
-              />
+              {
+                this.state.points.map( (point, i) => {
+                  return(
+                    <Marker
+                      key={"mark_" + i.toString()}
+                      name={"mark_" + i.toString()}
+                      title={point.venueName}
+                      position={{ lat: point.venueLat, lng: point.venueLon }}
+                    />
+                  )
+                })
+              }
             </Map>
           )
+          
         }
+  
         
       </React.Fragment>
     );
