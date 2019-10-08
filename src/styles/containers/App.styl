@@ -1,3 +1,7 @@
+show-button-bg-color = #fff
+show-button-border-color = #565656
+show-button-text-color = #565656
+
 body
   background-color white
   margin 0
@@ -5,4 +9,32 @@ body
 
 section
   margin 0
-  paddin 0
+  padding 0
+
+.show
+  background show-button-bg-color
+  border 0px solid red
+  cursor pointer
+  color show-button-text-color
+  display flex
+  font-size 16px
+  font-weight bold
+  width 80px
+  height 40px
+  justify-content center
+  position fixed
+  bottom 10px
+  left 10px
+  z-index 1
+ 
+
+  &:hover
+    background lightness(show-button-text-color,90%)
+    color lightness(show-button-text-color,10%)
+
+  &:focus
+    background #95ca3e
+    border 1px solid show-button-border-color
+    color #fff
+
+
