@@ -9,7 +9,7 @@ class MapContainer extends React.Component {
   }
 
   handleClick = () => {
-    const { show, textButton } = this.state;
+    const { show } = this.state;
     if (show) {
       this.setState({
         show: false,
@@ -31,12 +31,17 @@ class MapContainer extends React.Component {
       <div className="container">
         <Map
           google={google}
-          zoom={5}
+          zoom={4}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
           <Marker
+            title="Platzi México"
             position={{ lat: 19.4267261, lng: -99.1718706 }}
+          />
+          <Marker
+            title="Agrega Platzi HQ Bogotá"
+            position={{ lat: 4.6560716, lng: -74.0595918 }}
           />
         </Map>
         <div className="container_btn">
