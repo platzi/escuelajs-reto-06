@@ -29,12 +29,13 @@ module.exports = {
         ],
       },
       {
-        test: /\.css|.styl$/,
+        test: /\.(css|styl|scss)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader',
+          'sass-loader',
           'stylus-loader',
         ],
       },
