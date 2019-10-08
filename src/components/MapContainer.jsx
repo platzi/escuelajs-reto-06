@@ -1,22 +1,20 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const MapContainer = ({ google }) => {
+const MapContainer = ({ google, locations }) => {
   return (
     <Map
       google={google}
       zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+      initialCenter={{ lat: 12.0413988, lng: -86.6157312 }}
     >
-      <Marker
-        position={{ lat: 19.4267261, lng: -99.1718706 }}
-      />
-      <Marker
-        position={{ lat: 4.6560716, lng: -74.0595918 }}
-      />
-    </Map>
+      {
+        locations.map((item) => 
+          <Marker key={item.venueName} position={{ lat: item.venueLat, lng: item.venueLon }} />)
+      }
+    </Map>  
   );
-}
+};
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
