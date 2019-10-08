@@ -1,12 +1,12 @@
 import React from 'react';
-import MapContainer from "../components/MapContainer";
+import Contact from '../components/Contact';
+import Header from '../components/Header';
 import '../styles/containers/App.styl';
 
+
 const App = () => {
-  return (
-    <div className="App">
-      <MapContainer />
-    </div>
+    return (
+      <Header />
   )
 };
 
