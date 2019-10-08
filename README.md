@@ -1,4 +1,5 @@
 # Escuelajs-reto-06
+
 Reto 6 Octubre 5: Curso Práctico de React JS
 
 ## Platzi Maps
@@ -8,32 +9,38 @@ Tenemos un proyecto web, donde debemos trabajar con la API de Google de mapas, t
 ![Google-maps](https://raw.githubusercontent.com/platzi/escuelajs-reto-06/master/screenshot.png?token=ACQQY5TB2DOOKO5CD7LURB25UFNGK)
 
 ### Instalación
-```
+
+```bash
 npm install
 ```
 
 ### Ejecución
-```
+
+```bash
 npm run start
 ```
 
 ### Server
-```
+
+```bash
 npm run server
 ```
 
 ### Compilar
-```
+
+```bash
 npm run build
 ```
 
 ### Documentación
+
 Importar React y el paquete [google-maps-react](https://www.npmjs.com/package/google-maps-react)
 
 ```javascript
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 ```
+
 Creamos un componente llamado MapContainer donde vamos a crear la lógica para crear un nuevo mapa.
 
 ```javascript
@@ -63,9 +70,15 @@ export default GoogleApiWrapper({
 ## RETO
 
 ### Primer problema
+
 Necesitamos que nuestra aplicación tenga una sección de contacto con un mapa de Google Maps, donde puedas tener un botón que oculta o muestra el botón.
 
 1) Convertir el componente 'MapContainer.jsx' a Clase
+   1) **Propongo usar Hooks** (_@Nemo1Co_):
+      1) `Àpp.jsx` ya es una función y con Hooks no se requiere cambiar la forma a clase para poder incluir estados y ciclo de vida.
+      2) Es un proyecto iniciando se puede incluir Hooks
+      3) Para agregar el estado `show` y su funcionalidad sólo se debe agregar unas porciones minimas de código.
+      4) Además, la mejora es de fácil lectura.
 2) Añadir 'show' en 'false' en el estado de la aplicación
 3) Agregar un botón que muestre y oculte el mapa.
 
@@ -99,12 +112,14 @@ Ahora que tenemos nuestra aplicación Funcionando, utiliza la documentación del
 2) Implementa un 'InfoWindow' por cada ubicación debes de utilizar la información de la FAKE API.
 3) Muestra el nombre de la oficina de Platzi al dar clic en el Maker.
 
-
 ### Enviar solución de reto
+
 Debes de crear un "Fork" de este proyecto, revolver los problemas y crear un Pull Request hacia este repositorio.
 
 ### Contribuir
+
 Si alguien quiere agregar o mejorar algo, lo invito a colaborar directamente en este repositorio: [escuelajs-reto-06](https://github.com/platzi/escuelajs-reto-06/)
 
 ### Licencia
+
 escuelajs-reto-06 se lanza bajo la licencia [MIT](https://opensource.org/licenses/MIT).
