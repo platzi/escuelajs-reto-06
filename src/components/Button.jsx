@@ -14,10 +14,13 @@ class Button extends React.Component {
   }
 
   render() {
+    const {show} = this.state
     return (
       <div>
+        <h1>Nunca Pares de Aprender</h1>
+        <h2>Instalaciones de Platzi</h2>
         <button className='boton' type='button' onClick={this.toggleMap}>
-          Contactenos
+          {show?"Ocultar Mapa":"Mostrar Mapa"}
         </button>
       </div>
     )

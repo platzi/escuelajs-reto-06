@@ -16,7 +16,7 @@ const App = () => {
     <div className="App">
       <Button />
       <section>
-        <MapContainer locations={sitios} />
+        <MapContainer locations={sitios}  />
       </section>
     </div>
   )
