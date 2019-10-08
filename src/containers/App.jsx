@@ -27,6 +27,8 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1>Bienvendo a nuestro sitio</h1>
+      <h3>Conosco nuestras instalaciones:</h3>
       <button className='boton' type="button" onClick={handleClick}> 
       {show ? 'Ocultar Mapa' : 'Mostrar Mapa'} 
       </button>
