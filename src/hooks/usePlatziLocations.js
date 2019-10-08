@@ -6,7 +6,11 @@ const usePlatziLocations = (API) => {
   useEffect(() => {
     fetch(API)
       .then((response) => response.json())
-      .then((data) => setLocations(data));
+      .then((data) => setLocations(data))
+      .catch((error) => {
+        setLocations([]);
+        console.error(error);
+      });
   }, []);
 
   return locations;

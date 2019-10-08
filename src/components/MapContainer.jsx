@@ -26,7 +26,7 @@ const MapContainer = ({ google, locations }) => {
       initialCenter={{ lat: 12.0413988, lng: -86.6157312 }}
       onClick={onMapClicked}
     >
-      {
+      { locations.length > 0 && 
         locations.map((item) => (
           <Marker
             key={item.venueName}
