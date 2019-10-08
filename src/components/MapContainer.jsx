@@ -16,7 +16,7 @@ class MapContainer extends Component {
     const { show } = this.state;
     return(
       <Fragment>
-        <button type='button' onClick={this.handleClick}>
+        <button type='button' className='button' onClick={this.handleClick}>
           {show ? 'Ocultar mapa' : 'Mostrar mapa'}
         </button>
         {
