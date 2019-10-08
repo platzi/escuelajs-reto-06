@@ -8,8 +8,10 @@ const Contact = () => {
   return (
     <section className='Contact'>
       <div className='Contact__info'>
-      <FormContact />
-        <CardMap />
+        <FormContact />
+        <h3 className='Contact__title'>Oficinas</h3>
+        <CardMap name='Platzi Mexico' />
+        <CardMap name='Platzi Bogotá' />
       </div>
       <MapContainer />
     </section>

@@ -1,13 +1,13 @@
 import React from 'react';
-import Contact from '../components/Contact';
 import Header from '../components/Header';
+import Contact from '../components/Contact';
 import '../styles/containers/App.styl';
 
-
-const App = () => {
-    return (
-      <Header />
+const App = () => (
+  <React.Fragment>
+    <Header />
+    <Contact />
+  </React.Fragment>
   )
-};
 
 export default App;

@@ -1,0 +1,38 @@
+@require './app.styl'
+.FormContact{
+  display: flex
+  flex-direction: column
+  & h3{
+    text-align: center
+    }
+  & input{
+    border-radius: 10px
+    border: 1px solid color-primario
+    width 50%
+    height 20px
+    }
+  & label{
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 1%
+    }
+  &__descripcion{
+    & input{
+      height 40px
+      }
+    }
+  &__enviar{
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 3%
+    & input{
+      background-color:  #58902d
+      color: #fff
+      -webkit-box-shadow: 1px 3px 10px 0px  color-oscuro
+      -moz-box-shadow: 1px 3px 10px 0px  color-oscuro
+      box-shadow: 1px 3px 10px 0px color-oscuro
+      }
+    }
+  }
