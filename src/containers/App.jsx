@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MapContainer from "../components/MapContainer";
+import useLocations from '../hooks/useLocations';
 import '../styles/containers/App.styl';
 
 const API = " http://localhost:3000/locations";
 
 const App = () => {
-
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-     fetch(API)
-      .then(reponse => reponse.json())
-      .then(responseLocations => setLocations(responseLocations));
-  }, []);
-
+  const locations = useLocations(API);
   return (
     <div className="App">
       <MapContainer locations={locations} />
