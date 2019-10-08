@@ -24,8 +24,8 @@ class MapContainer extends Component {
   onMarkerClick(props, marker) {
     this.setState({
       place: props,
+      showLocation: true,
       marker,
-      showLocation: true
     });
   }
 
@@ -33,7 +33,7 @@ class MapContainer extends Component {
     if (this.state.showLocation) {
       this.setState({
         showLocation: false,
-        marker: null
+        marker: null,
       })
     }
   }
