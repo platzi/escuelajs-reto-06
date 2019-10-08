@@ -76,6 +76,38 @@ Tenemos por defecto en nuestra Mapa la Ubicación de Platzi HQ México, debemos 
 
 1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar multiples Markers
 2) Agrega Platzi HQ Bogotá: LAT: 4.6560716 LON: -74.0595918
+
+### Tercer Problema
+
+Ahora utiliza la API propuesta
+
+Para ejecutar la Fake API debes de correr el siguiente comando:
+
+```bash
+json-server locations.json
+```
+1) Inicia y analiza el funcionamiento de la FAKE API de 'locations'
+2) Haz un llamado a la API desde el proyecto por medio de fetch
+3) Por medio de 'props' pasa al componente 'MapContainer.jsx' el resultado de la consulta a la FAKE API.
+4) Itera por cada una de las ubicaciones que tiene Platzi y muéstralas en el Mapa.
+
+### Cuarto Problema (Opcional)
+
+Ahora que tenemos nuestra aplicación Funcionando, utiliza la documentación del paquete instalado para aprender e implementar un 'infoView' por cada ubicación de Platzi
+
+1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar 'infoView'
+2) Implementa un 'infoView' por cada ubicación debes de utilizar la información de la FAKE API.
+3) Muestra el nombre de la oficina de Platzi al dar clic en el Maker.
+
+### Enviar solución de reto
+Debes de crear un "Fork" de este proyecto, revolver los problemas y crear un Pull Request hacia este repositorio.
+
+### Contribuir
+Si alguien quiere agregar o mejorar algo, lo invito a colaborar directamente en este repositorio: [escuelajs-reto-06](https://github.com/platzi/escuelajs-reto-06/)
+
+### Licencia
+escuelajs-reto-06 se lanza bajo la licencia [MIT](https://opensource.org/licenses/MIT).
+
 ## SOLUCION A PRIMERO Y SEGUNDO PROBLEMA:
 
 ```js
@@ -126,7 +158,12 @@ const App = () => {
 };
 
 export default App;
+```
+
+```js
+
 // ********************SOLUCION*************
+//MapContainer.jsx
 import React, { useState } from 'react';
 import MapContainer from '../components/MapContainer';
 import '../styles/containers/App.styl';
@@ -146,29 +183,7 @@ const App = () => {
 };
 export default App;
 ```
-### Tercer Problema
-
-Ahora utiliza la API propuesta
-
-Para ejecutar la Fake API debes de correr el siguiente comando:
-
-```bash
-json-server locations.json
-```
-1) Inicia y analiza el funcionamiento de la FAKE API de 'locations'
-2) Haz un llamado a la API desde el proyecto por medio de fetch
-3) Por medio de 'props' pasa al componente 'MapContainer.jsx' el resultado de la consulta a la FAKE API.
-4) Itera por cada una de las ubicaciones que tiene Platzi y muéstralas en el Mapa.
-
-### Cuarto Problema (Opcional)
-
-Ahora que tenemos nuestra aplicación Funcionando, utiliza la documentación del paquete instalado para aprender e implementar un 'infoView' por cada ubicación de Platzi
-
-1) Leer la documentación de '[google-maps-react](https://www.npmjs.com/package/google-maps-react)' para implementar 'infoView'
-2) Implementa un 'infoView' por cada ubicación debes de utilizar la información de la FAKE API.
-3) Muestra el nombre de la oficina de Platzi al dar clic en el Maker.
-
-<!-- // ********************SOLUCION************* -->
+## SOLUCION A TERCER Y CUARTO PROBLEMA:
 ```js  
 // ************App.jsx
 const App = () => {
@@ -208,7 +223,8 @@ const App = () => {
 
 export default App;
 
-// **************************MapContainer.jsx
+
+//  MapContainer.jsx
 class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
@@ -264,12 +280,3 @@ export default GoogleApiWrapper({
 })(MapContainer);
 
 ```
-
-### Enviar solución de reto
-Debes de crear un "Fork" de este proyecto, revolver los problemas y crear un Pull Request hacia este repositorio.
-
-### Contribuir
-Si alguien quiere agregar o mejorar algo, lo invito a colaborar directamente en este repositorio: [escuelajs-reto-06](https://github.com/platzi/escuelajs-reto-06/)
-
-### Licencia
-escuelajs-reto-06 se lanza bajo la licencia [MIT](https://opensource.org/licenses/MIT).
