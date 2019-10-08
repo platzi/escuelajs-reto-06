@@ -6,7 +6,6 @@ const useLocations = (api) => {
         fetch(api)
             .then(reponse => reponse.json())
             .then(responseLocations => setLocations(responseLocations));
-
     }, []);
 
     return locations;
