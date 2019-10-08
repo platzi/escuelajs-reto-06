@@ -153,7 +153,7 @@ Ahora utiliza la API propuesta
 Para ejecutar la Fake API debes de correr el siguiente comando:
 
 ```bash
-npm run server
+json-server locations.json
 ```
 1) Inicia y analiza el funcionamiento de la FAKE API de 'locations'
 2) Haz un llamado a la API desde el proyecto por medio de fetch
