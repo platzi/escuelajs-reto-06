@@ -13,7 +13,7 @@ const places = {
     }
   },
   'mexico': {
-    'maker': {
+    'marker': {
       lat: 19.4267261,
       lng: -99.1718706,
     },
@@ -52,12 +52,15 @@ class MapContainer extends Component {
           this.state.show?
             <Map
           google={this.props.google}
-          zoom={5}
+          zoom={3}
           initialCenter={places.mexico.viewport}
           >
 
           <Marker
-            position={places.mexico.maker}
+            position={places.mexico.marker}
+            />
+          <Marker
+            position={places.bogota.marker}
             />
         </Map>
         : null
