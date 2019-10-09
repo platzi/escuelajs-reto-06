@@ -31,7 +31,7 @@ class MapContainer extends Component {
         <button type='button' className='button' onClick={this.handleClick}>
           {show ? 'Ocultar mapa' : 'Mostrar mapa'}
         </button>
-        { show &&
+        { show && (
           <Map
             google={google}
             zoom={4}
@@ -40,19 +40,18 @@ class MapContainer extends Component {
           >
             {
               locations.map( location => (
-              //  return <>
                 <Marker
-                key= {location.venueName}
-                name={location.venueName}
-                position={{ lat: location.venueLat, lng: location.venueLon }}
-                onClick={this.onMarkerClick}
+                  key={location.venueName}
+                  name={location.venueName}
+                  position={{ lat: location.venueLat, lng: location.venueLon }}
+                  onClick={this.onMarkerClick}
                 />
               ))
             }
-           {
+            {
               <InfoWindow
-              marker={activeMarker}
-              visible={showingInfoWindow}
+                marker={activeMarker}
+                visible={showingInfoWindow}
               >
                 <div>
                   <p><strong>{selectedPlace.name}</strong></p>
@@ -60,7 +59,7 @@ class MapContainer extends Component {
               </InfoWindow>
           }
           </Map>
-        }
+        )}
       </Fragment>
     );
   }
