@@ -26,35 +26,73 @@ const places = {
 
 class MapContainer extends Component {
 
-  constructor() {
-    super();
-    this.state = { show: false }
+  constructor(props) {
+    super(props);
+    this.state = { 
+      show: false, 
+      textButton: 'Show the Map',
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+    }
     
   }
+
+  onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+onMapClicked = (props) => {
+  if (this.state.showingInfoWindow) {
+    this.setState({
+      showingInfoWindow: false,
+      activeMarker: null
+    })
+  }
+};
+
   
-  hidder(){
+  handleMap(){
     if(this.state.show===false){
       this.setState({
-          show: true
+          show: true,
+          textButton:'Hide the Map' 
       });
     }else{
       this.setState({
-        show: false
+        show: false,
+        textButton:'Show the Map'
     });
     }
   }
 
   render() {
+    const {google,markers} = this.props;
+
     return (
       <div>
-        <button onClick={()=>this.hidder()}>show Map</button>
+        <button type='button' onClick={()=>this.handleMap()}>{this.state.textButton}</button>
         {
           this.state.show?
             <Map
-          google={this.props.google}
-          zoom={3}
-          initialCenter={places.mexico.viewport}
-          >
+                google={google}
+                onClick={this.onMapClicked}
+                zoom={5}
+                initialCenter={places.mexico.viewport}
+            >
+          <Marker onClick={this.onMarkerClick}
+            name={'Current location'}
+            />
+        {/* <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow> */}
 
           <Marker
             position={places.mexico.marker}
@@ -62,9 +100,12 @@ class MapContainer extends Component {
           <Marker
             position={places.bogota.marker}
             />
+            
         </Map>
         : null
         }
+ 
+
       </div>
     );
   }
