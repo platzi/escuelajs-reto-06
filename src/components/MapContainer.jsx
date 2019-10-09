@@ -1,7 +1,17 @@
-import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import React, { useState } from 'react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 const MapContainer = ({ google, locations }) => {
+  const [visibility, setvisibility] = useState(false);
+  const [activeMarker, setMarker] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState([]);
+
+  const handleInfoWindow = (props, marker) => {
+    setvisibility(true);
+    setMarker(marker);
+    setSelectedPlace({ ...props });
+  };
+
   return (
     <Map
       google={google}
@@ -15,9 +25,16 @@ const MapContainer = ({ google, locations }) => {
             key={id}
             title={venueName}
             position={{ lat: venueLat, lng: venueLon }}
+            onClick={handleInfoWindow}
           />
         );
       })}
+
+      <InfoWindow marker={activeMarker} visible={visibility}>
+        <div>
+          <h1>{selectedPlace.title}</h1>
+        </div>
+      </InfoWindow>
     </Map>
   );
 };
