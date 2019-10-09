@@ -5,8 +5,10 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 class MapContainer extends Component {
   constructor(props) {
     super(props);
+    const { data } = props;
     this.state = {
       show: false,
+      markers: data,
     };
   }
 
@@ -20,7 +22,8 @@ class MapContainer extends Component {
   };
 
   render() {
-    const { show } = this.state;
+    const { show, markers } = this.state;
+    const { google } = this.props;
     return (
       <div>
         <button type="button" onClick={this.handleMapVisibility}>
@@ -32,14 +35,13 @@ class MapContainer extends Component {
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
-          <Marker
-            name="Platzi HQ México"
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            name="Platzi HQ Bogotá"
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
+          {markers.map(item => (
+            <Marker
+              key={item.venueName}
+              name={item.venueName}
+              position={{ lat: item.venueLat, lng: item.venueLon }}
+            />
+          ))}
         </Map>
       </div>
     );
