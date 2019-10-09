@@ -6,7 +6,6 @@ const App = () => {
   return (
     <div className="App">
       <MapContainer />
-      
     </div>
   )
 };
