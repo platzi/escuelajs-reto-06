@@ -108,3 +108,7 @@ Si alguien quiere agregar o mejorar algo, lo invito a colaborar directamente en 
 
 ### Licencia
 escuelajs-reto-06 se lanza bajo la licencia [MIT](https://opensource.org/licenses/MIT).
+
+## Deploy
+para ver la solucion con su deploy puedes consular la siguiente URL
+https://reto6escuelajs.firebaseapp.com/
