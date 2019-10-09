@@ -1,12 +1,27 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import useFetchPlaces from '../hooks/useFetchPlaces';
+
+
+const API = 'http://localhost:3000/locations';
 
 class MapContainer extends React.Component {
-  state = {
-    show: false,
-    textButton: 'Mostrar Mapa',
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      show: false,
+      textButton: 'Mostrar Mapa',
+      locations: []
+    };
+  }
+  
+  componentDidMount() {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => this.setState({
+        locations: data
+      }))
+      .catch((error) => console.error(error));
+  }
 
   handleClick = () => {
     const { show } = this.state;
@@ -23,26 +38,15 @@ class MapContainer extends React.Component {
     }
   }
 
-  displayMakers = ()=> {
-    // const { locations } = this.state;
-    const locations =  useFetchPlaces('http://localhost:3000/locations');
-    // const locations = [
-    //   {
-    //     "venueLat": 19.42672619,
-    //     "venueLon": -99.1718706,
-    //     "venueName": "Platzi HQ CDMX"
-    //   },
-    //   {
-    //     "venueLat": 4.6560716,
-    //     "venueLon": -74.0595918,
-    //     "venueName": "Platzi HQ Bogota"
-    //   }
-    // ]
+  
+  displayMakers = () => {
+    const { locations } = this.state;
+    console.log(locations);
     return locations.map( (location, index ) => {
       return (
         <Marker 
           id={index}
-          key={index}
+          key={location.venueName}
           position={{
             lat: location.venueLat,
             lng: location.venueLon

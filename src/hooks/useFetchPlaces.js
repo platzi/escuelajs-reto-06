@@ -6,24 +6,24 @@ const useFetchPlaces = API => {
   );
 
   useEffect(() => {
-  //   fetch(API)
-  //     .then(response => response.json)
-  //     .then(data => setLocations(data));
-  // }, [] );
-
-  setLocations([
-    {
-      "venueLat": 19.42672619,
-      "venueLon": -99.1718706,
-      "venueName": "Platzi HQ CDMX"
-    },
-    {
-      "venueLat": 4.6560716,
-      "venueLon": -74.0595918,
-      "venueName": "Platzi HQ Bogota"
-    }
-  ]);
+    fetch(API)
+      .then(response => response.json())
+      .then(data => setLocations(data));
   }, [] );
+
+  // setLocations([
+  //   {
+  //     "venueLat": 19.42672619,
+  //     "venueLon": -99.1718706,
+  //     "venueName": "Platzi HQ CDMX"
+  //   },
+  //   {
+  //     "venueLat": 4.6560716,
+  //     "venueLon": -74.0595918,
+  //     "venueName": "Platzi HQ Bogota"
+  //   }
+  // ]);
+  // }, [] );
 
   return locations;
 };
