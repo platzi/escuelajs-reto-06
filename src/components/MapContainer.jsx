@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker ,InfoWindow } from 'google-maps-react';
 
 const places = {
   'bogota': {
@@ -45,14 +45,14 @@ class MapContainer extends Component {
     showingInfoWindow: true
   });
 
-onMapClicked = (props) => {
-  if (this.state.showingInfoWindow) {
-    this.setState({
-      showingInfoWindow: false,
-      activeMarker: null
-    })
-  }
-};
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
   
   handleMap(){
@@ -70,7 +70,7 @@ onMapClicked = (props) => {
   }
 
   render() {
-    const {google,markers} = this.props;
+    const {google} = this.props;
 
     return (
       <div>
@@ -83,26 +83,26 @@ onMapClicked = (props) => {
                 zoom={5}
                 initialCenter={places.mexico.viewport}
             >
-          <Marker onClick={this.onMarkerClick}
-            name={'Current location'}
-            />
-        {/* <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow> */}
+              <Marker onClick={this.onMarkerClick}
+                name={'Current location'}
+                />
+              <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}>
+                  <div>
+                    <h1>{this.state.selectedPlace.name}</h1>
+                  </div>
+              </InfoWindow>
 
-          <Marker
-            position={places.mexico.marker}
-            />
-          <Marker
-            position={places.bogota.marker}
-            />
+              <Marker
+                position={places.mexico.marker}
+                />
+              <Marker
+                position={places.bogota.marker}
+                />
             
-        </Map>
-        : null
+            </Map>
+          : null
         }
  
 
