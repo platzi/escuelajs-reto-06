@@ -2,18 +2,24 @@ import React, {useState} from 'react';
 import CardMap from './CardMap';
 import FormContact from './FormContact';
 import MapContainer from "./MapContainer";
+import UseInitialState from '../hooks/UseInitialState'
 import '../styles/containers/Contact.styl';
+
+const API = 'http://localhost:3000/locations'
 
 const Contact = () => {
   const [show, setShow] = useState(true)
+  const initialState = UseInitialState(API);
+
   return (
     <section className='Contact'>
       <div className='Contact__info'>
-        <button className='Contact__info__boton' onClick={() => {setShow(!show)}} > {show ? 'Ocultar' : 'Mostrar'}</button>
+        <button type='button' className='Contact__info__boton' onClick={() => {setShow(!show)}}> 
+          {show ? 'Ocultar' : 'Mostrar'}
+        </button>
         <FormContact />
         <h3 className='Contact__title'>Oficinas</h3>
-        <CardMap name='Platzi Mexico' />
-        <CardMap name='Platzi Bogotá' />
+        {initialState.map((item) => <CardMap name={item.venueName} /> )}
       </div>
       {show && <MapContainer />} 
     </section>
