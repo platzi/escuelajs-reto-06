@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
+const API='http://localhost:3000/locations';
 
 class MapContainer extends Component {
   constructor(props){
@@ -9,9 +10,18 @@ class MapContainer extends Component {
       zoom: 5,
       lat: 19.5943885,
       lng: -97.9526044,
-      show: false
+      show: false,
+      markers: []
     };
     this.toggleShow = this.toggleShow.bind(this);
+  }
+;
+  componentDidMount(){
+    fetch(API)
+    .then(response => response.json())
+    .then(data =>  this.setState({
+      markers: data
+    }))
   }
 
   toggleShow() { 
@@ -27,7 +37,7 @@ class MapContainer extends Component {
     }
   };
 
-  render() {
+  render() { 
     return (
       <div>
         <div>
@@ -46,16 +56,16 @@ class MapContainer extends Component {
             visible={this.state.show}
             initialCenter={{ lat: this.state.lat, lng: this.state.lng }}
           >
-            <Marker
-            title={'Platzi México'}
-            name={'Platzi México'}
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-            />
-            <Marker
-            title={'Platzi HQ Bogotá'}
-            name={'Platzi HQ Bogotá'}
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-            />
+            {this.state.markers.length > 0 &&
+              this.state.markers.map( item => (
+                <Marker
+                  key={item.venueName}
+                  title={item.venueName}
+                  position={{ lat: item.venueLat, lng: item.venueLon }}
+                  name={item.venueName}
+                />
+              ))
+          }
           </Map>
         </div>
       </div>
