@@ -2,7 +2,6 @@ import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
-const API = 'http://localhost:3000/locations';
 
 class MapContainer extends React.Component {
   constructor(props){
@@ -10,19 +9,9 @@ class MapContainer extends React.Component {
     this.state = {
       show: false,
       textButton: 'Mostrar Mapa',
-      locations: []
     };
   }
   
-  componentDidMount() {
-    fetch(API)
-      .then(response => response.json())
-      .then(data => this.setState({
-        locations: data
-      }))
-      .catch((error) => console.error(error));
-  }
-
   handleClick = () => {
     const { show } = this.state;
     if (show) {
@@ -39,9 +28,7 @@ class MapContainer extends React.Component {
   }
 
   
-  displayMakers = () => {
-    const { locations } = this.state;
-    console.log(locations);
+  displayMakers = (locations) => {
     return locations.map( (location, index ) => {
       return (
         <Marker 
@@ -58,9 +45,8 @@ class MapContainer extends React.Component {
   };
 
   render() {
-    const { google} = this.props;
+    const { google, locations} = this.props;
     const { show, textButton } = this.state;
-    
     return (
       <div className="container">
         <Map
@@ -69,7 +55,7 @@ class MapContainer extends React.Component {
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
-          {this.displayMakers()}
+          {this.displayMakers(locations)}
         </Map>
         <div className="container_btn">
           <button className="btn_show" type="button" onClick={this.handleClick}>
