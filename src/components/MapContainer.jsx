@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const API='http://localhost:3000/locations';
+
 
 class MapContainer extends Component {
   constructor(props){
+    const { item, loaded, google } = props;
     super(props);
     this.state = {
       zoom: 5,
       lat: 19.5943885,
       lng: -97.9526044,
       show: false,
-      markers: []
+      markers: item
     };
     this.toggleShow = this.toggleShow.bind(this);
   }
 ;
-  componentDidMount(){
-    fetch(API)
-    .then(response => response.json())
-    .then(data =>  this.setState({
-      markers: data
-    }))
-  }
-
   toggleShow() { 
     if(this.state.show){
       this.setState({
