@@ -1,20 +1,42 @@
-import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import React, { Component } from 'react';
+import MyMap from './Map';
 
-const MapContainer = ({ google }) => {
-  return (
-    <Map
-      google={google}
-      zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-    >
-      <Marker
-        position={{ lat: 19.4267261, lng: -99.1718706 }}
-      />
-    </Map>
-  );
+class MapContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+      textButton: 'Ver mapa'
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { show } = this.state;
+    if(show) {
+      this.setState({show: false, textButton: 'Ver mapa'})
+    } else {
+      this.setState({show: true, textButton: 'Ocultar mapa'})
+    }
+  }
+
+  render() {
+    const { show, textButton } = this.state;
+    return (
+      <>
+        <button type="button" className="btn btn-material" onClick={this.handleClick}>
+          {textButton}
+        </button>
+        {
+          (show) ? (
+            <MyMap />
+          ) : (
+            <div className="upps">Upps Algo Has Ocultado Algo Muy Importante</div>
+          )
+        } 
+      </>
+    );
+  }
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCmjvkXB_DMnBUNwxQztLMStyQmA_szbNw'
-})(MapContainer);
+export default MapContainer;
