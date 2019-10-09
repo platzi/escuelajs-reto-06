@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
+const API = 'http://localhost:3000/locations';
+
 class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
       btnTxt: 'Mostrar Mapa',
+      locations: [],
     };
+  }
+
+  componentDidMount() {
+    window.fetch(API)
+      .then(response => response.json())
+      .then(locations => this.setState({ locations }))
+      // eslint-disable-next-line no-console
+      .catch(error => console.log(`Hubo un error al consultar la API: ${error}`));
   }
 
   handleShowMap = () => {
@@ -26,7 +37,7 @@ class MapContainer extends Component {
   }
 
   render() {
-    const { show, btnTxt } = this.state;
+    const { show, btnTxt, locations } = this.state;
     const { google } = this.props;
 
     return (
@@ -35,14 +46,16 @@ class MapContainer extends Component {
 
         {show ? (
           <Map google={google} zoom={5} initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}>
-            <Marker
-              title='Platzi HQ México'
-              position={{ lat: 19.4267261, lng: -99.1718706 }}
-            />
-            <Marker
-              title='Platzi HQ Bogotá'
-              position={{ lat: 4.6560716, lng: -74.0595918 }}
-            />
+            {
+              locations.length > 0 &&
+              locations.map(location => (
+                <Marker
+                  key={location.venueName}
+                  title={location.venueName}
+                  position={{ lat: location.venueLat, lng: location.venueLon }}
+                />
+              ))
+            }
           </Map>
         ) :
           (
