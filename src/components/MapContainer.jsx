@@ -38,9 +38,9 @@ export class MapContainer extends React.Component{
 
   render(){
     return(
-      <div className="">
+      <section className="sectionMap">
         <button className="button" onClick={this.handleClick}>
-          {this.state.mapVisible ? 'Ocultar' : 'Mostrar'}
+          {this.state.mapVisible ? 'Ocultar Mapa' : 'Mostrar Mapa'}
         </button>
         <Map
           google={google}
@@ -66,7 +66,7 @@ export class MapContainer extends React.Component{
             </div>
           </InfoWindow>
         </Map>
-      </div>
+      </section>
     );
   }
 }
