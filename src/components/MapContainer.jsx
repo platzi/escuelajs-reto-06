@@ -21,6 +21,7 @@ class MapContainer extends Component {
   }
 
   render() {
+    const { data } = this.props; 
     const { show, textButton } = this.state;
     return (
       <>
@@ -29,7 +30,7 @@ class MapContainer extends Component {
         </button>
         {
           (show) ? (
-            <MyMap />
+            <MyMap markers={data} />
           ) : (
             <div className="upps">Upps Algo Has Ocultado Algo Muy Importante</div>
           )
