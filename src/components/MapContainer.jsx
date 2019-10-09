@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 class MapContainer extends Component{
 
-  state = {
+ state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
@@ -26,6 +26,7 @@ class MapContainer extends Component{
     };
 
     render() {
+    
       return (
         <Map
           google={google}

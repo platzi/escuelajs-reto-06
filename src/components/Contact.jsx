@@ -19,7 +19,7 @@ const Contact = () => {
         </button>
         <FormContact />
         <h3 className='Contact__title'>Oficinas</h3>
-        {initialState.map((item) => <CardMap key={item.venueName} name={item.venueName} /> )}
+        {initialState.map((item) => <CardMap key={item.venueName} name={item.venueName} venueLat={item.venueLat} venueLon={item.venueLon} /> )}
       </div>
       {show && <MapContainer />} 
     </section>
