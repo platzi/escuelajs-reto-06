@@ -9,6 +9,16 @@
       "venueLat": 4.6560716,
       "venueLon": -74.0595918,
       "venueName": "Platzi HQ Bogota"
+    },
+    {
+      "venueLat": 6.2443695,
+      "venueLon": -75.6512526,
+      "venueName": "Platzi HQ Medellín"
+    },
+    {
+      "venueLat": 25.6490376,
+      "venueLon": -100.4431838,
+      "venueName": "Platzi HQ Monterrey"
     }
   ]
 }
