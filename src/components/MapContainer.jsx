@@ -10,8 +10,8 @@ const MapContainer = ({ google, locations }) => {
         return (
           <Marker
             key={id}
-            name={venueName}
-            position={{ lat: { venueLat }, lng: { venueLon } }}
+            title={venueName}
+            position={{ lat: venueLat, lng: venueLon }}
           />
         )
       })}
