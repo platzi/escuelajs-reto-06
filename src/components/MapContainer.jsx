@@ -25,17 +25,10 @@ class MapContainer extends Component {
   render(){
     const {google} = this.props;
     const {show} = this.state;
-
-    const points = [
-      { lat: 4.6560716, lng: -74.0595918 },
-    ]
-
-    const bounds = new this.props.google.maps.LatLngBounds();
-    for (let i = 0; i < points.length; i++) {
-      bounds.extend(points[i]);
-    }
+    const {locations} = this.props;
 
     return (
+      
       <>
         <button type="button" onClick={this.handleShowMap}>
           mostrar/ocultar mapa
@@ -44,17 +37,14 @@ class MapContainer extends Component {
           visible={show} 
           google={google}
           zoom={5}
-          initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
-          bounds={bounds}
+          initialCenter={{ lat: locations[1].venueLat, lng: locations[1].venueLon }}
         >
-          <Marker
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            title={'Platzi HQ Bogotá'}
-            name={'Platzi Bogota'}
-            position={{lat: 4.6560716, lng: -74.0595918}} 
-          />
+          {
+            locations.map(
+              (loc) => 
+                <Marker position={{ lat: loc.venueLat, lng: loc.venueLon }} />
+            )
+          }
         </Map>
       </>
     );
