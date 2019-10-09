@@ -1,56 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-class MapContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-      btnTxt: 'Mostrar Mapa',
-    };
-  }
+const MapContainer = ({ google, locations }) => {
 
-  handleShowMap = () => {
-    const { show } = this.state;
-    if (show === false) {
-      this.setState({
-        show: true,
-        btnTxt: 'Ocultar Mapa',
-      });
-    } else {
-      this.setState({
-        show: false,
-        btnTxt: 'Mostrar Mapa',
-      });
-    }
-  }
-
-  render() {
-    const { show, btnTxt } = this.state;
-    const { google } = this.props;
-
-    return (
-      <>
-        <button type='button' onClick={this.handleShowMap}>{btnTxt}</button>
-
-        {show ? (
-          <Map google={google} zoom={5} initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}>
-            <Marker
-              title='Platzi HQ México'
-              position={{ lat: 19.4267261, lng: -99.1718706 }}
-            />
-            <Marker
-              title='Platzi HQ Bogotá'
-              position={{ lat: 4.6560716, lng: -74.0595918 }}
-            />
-          </Map>
-        ) :
-          (
-            <h1>No hay Mapa</h1>
-          )}
-      </>
-    )
-  }
+  return (
+    <Map google={google} zoom={5} initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}>
+      {locations.map((item) => {
+        const { id, venueName, venueLat, venueLon } = item;
+        return (
+          <Marker
+            key={id}
+            name={venueName}
+            position={{ lat: { venueLat }, lng: { venueLon } }}
+          />
+        )
+      })}
+    </Map>
+  )
 };
 
 export default GoogleApiWrapper({
