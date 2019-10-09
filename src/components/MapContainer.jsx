@@ -16,24 +16,23 @@ class MapContainer extends Component {
   }
 
   render() {
+    const {locations} = this.props;
     const {show} = this.state;
     return(
       <div>
         <button type="button" onClick={this.toogleButton}>{show ? 'Ocultar mapa' : 'Ver mapa' }</button>
         {show &&
           <Map
-          google={google}
+          google={this.props.google}
           zoom={5}
           initialCenter={{ lat: 11.8901835, lng: -84.0547899 }}
           >
-            <Marker
-            name={'Platzi HQ México'}
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-            />
-            <Marker
-            name={'Platzi HQ Bogotá'}
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-            />
+            {locations.map(item => 
+              <Marker
+              name={item.venueName}
+              position={{ lat: item.venueLat, lng: item.venueLon }}
+              />
+            )}
           </Map>
         }
       </div>
