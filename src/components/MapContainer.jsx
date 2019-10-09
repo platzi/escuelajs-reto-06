@@ -1,7 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-
-
+import { Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
 
 class MapContainer extends React.Component {
   constructor(props){
@@ -9,9 +7,28 @@ class MapContainer extends React.Component {
     this.state = {
       show: false,
       textButton: 'Mostrar Mapa',
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+
     };
   }
   
+  onMarkerClick = (props, marker, e) => this.setState ( {
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true,
+  });
+
+  onMapClicked = props => {
+    if(this.state.showingInfoWindow){
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      })
+    }
+  };
+
   handleClick = () => {
     const { show } = this.state;
     if (show) {
@@ -27,19 +44,18 @@ class MapContainer extends React.Component {
     }
   }
 
-  
   displayMakers = (locations) => {
-    return locations.map( (location, index ) => {
+    return locations.map( (location ) => {
       return (
         <Marker 
-          id={index}
+          onClick={this.onMarkerClick}
           key={location.venueName}
           position={{
             lat: location.venueLat,
             lng: location.venueLon
           }}
           name={location.venueName}
-        />
+        />     
       )
     });
   };
@@ -49,13 +65,22 @@ class MapContainer extends React.Component {
     const { show, textButton } = this.state;
     return (
       <div className="container">
-        <Map
+        <Map onClick={this.onMapClicked}
           google={google}
           zoom={4}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
           {this.displayMakers(locations)}
+
+          <InfoWindow 
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
         </Map>
         <div className="container_btn">
           <button className="btn_show" type="button" onClick={this.handleClick}>
@@ -63,7 +88,6 @@ class MapContainer extends React.Component {
           </button>
         </div>
       </div>
-      
     );
   } 
 }
