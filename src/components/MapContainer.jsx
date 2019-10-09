@@ -32,7 +32,14 @@ class MapContainer extends Component {
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={show}
         >
-          <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
+          <Marker
+            name="Platzi HQ México"
+            position={{ lat: 19.4267261, lng: -99.1718706 }}
+          />
+          <Marker
+            name="Platzi HQ Bogotá"
+            position={{ lat: 4.6560716, lng: -74.0595918 }}
+          />
         </Map>
       </div>
     );
