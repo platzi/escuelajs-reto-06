@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-
-// const markers = [
-//   {
-//     name: 'Platzi CDMX',
-//     lat: 19.4267261,
-//     lng: -99.1718706,
-//   },
-//   {
-//     name: 'Platzi Bogotá',
-//     lat: 4.6560716,
-//     lng: -74.0595918,
-//   },
-// ];
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 class MapContainer extends Component {
   constructor(props) {
@@ -20,6 +7,9 @@ class MapContainer extends Component {
     this.state = {
       show: false,
       markers: [],
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
     };
   }
 
@@ -36,13 +26,31 @@ class MapContainer extends Component {
     this.setState(prevState => ({ show: !prevState.show }));
   };
 
+  onMarkerClick = (props, marker) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+  };
+
   render() {
     const { google } = this.props;
-    const { show, markers } = this.state;
+    const {
+      show,
+      markers,
+      showingInfoWindow,
+      activeMarker,
+      selectedPlace,
+    } = this.state;
     return (
       <>
-        <button type="button" onClick={this.handleShow}>
-          Toggle Map
+        <button
+          type="button"
+          onClick={this.handleShow}
+          style={{ position: 'fixed', bottom: 25, left: 25, zIndex: 1000 }}
+        >
+          TOGGLE MAP
         </button>
         {show && (
           <Map
@@ -52,9 +60,17 @@ class MapContainer extends Component {
           >
             {markers.map(marker => (
               <Marker
+                key={marker.venueName}
+                onClick={this.onMarkerClick}
+                name={marker.venueName}
                 position={{ lat: marker.venueLat, lng: marker.venueLon }}
               />
             ))}
+            <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+              <div>
+                <h1>{selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
           </Map>
         )}
       </>
