@@ -14,6 +14,7 @@ npm install
 
 ### Ejecución
 ```
+npm i node-fetch --save
 npm run start
 ```
 

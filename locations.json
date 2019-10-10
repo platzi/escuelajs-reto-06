@@ -8,7 +8,17 @@
     {
       "venueLat": 4.6560716,
       "venueLon": -74.0595918,
+      "venueName": "Platzi HQ other place"
+    },
+    {
+      "venueLat": 5.6560716,
+      "venueLon": -75.0595918,
       "venueName": "Platzi HQ Bogota"
+    },
+    {
+      "venueLat": 6.6560716,
+      "venueLon": -76.0595918,
+      "venueName": "Platzi other place"
     }
   ]
 }
