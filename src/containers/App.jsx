@@ -7,7 +7,7 @@ const App = () => {
     <div className="App">
       <MapContainer />
     </div>
-  )
+  );
 };
 
 export default App;
