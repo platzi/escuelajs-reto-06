@@ -14,4 +14,4 @@ const useInitialState = API => {
     return cities;
 };
 
-export default useInitialState;
+export default useInitialState; 
