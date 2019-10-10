@@ -22,12 +22,17 @@ class MapContainer extends React.Component {
         </button>
         <Map
           google={google}
-          zoom={5}
+          zoom={4}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           visible={this.state.show}
         >
           <Marker
+            title={'Platzi Mexico'}
             position={{ lat: 19.4267261, lng: -99.1718706 }}
+          />
+          <Marker
+            title={'Platzi Bogota'}
+            position={{ lat: 4.6560716, lng: -74.0595918 }}
           />
         </Map>
       </>
