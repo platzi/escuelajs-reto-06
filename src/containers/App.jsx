@@ -16,7 +16,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {console.log(locations)}
       <MapContainer data={locations} />
     </div>
   )
