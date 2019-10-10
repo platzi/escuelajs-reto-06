@@ -1,21 +1,53 @@
 import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 
-const ConsoleLog = ({ children }) => {
-  console.log(children);
-  return false;
-};
+const API = 'http://localhost:3000/locations';
+// const API =
+//   '/Users/luis/coding_proyects/reto_06/escuelajs-reto-06/package.json';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class MapContainer extends React.Component {
   state = {
     visible: false,
+    locations: [],
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
   };
 
-  showMap = props => {
+  componentDidMount() {
+    this.fetchData(API);
+  }
+
+  fetchData = async api => {
+    const response = await fetch(api);
+    const data = await response.json();
+
+    this.setState({
+      // eslint-disable-next-line object-shorthand
+      locations: data,
+    });
+  };
+
+  showMap = () => {
     if (!this.visible) {
       this.setState({
         visible: !this.state.visible,
+      });
+    }
+  };
+
+  onMarkerClick = (props, marker) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+
+  onMapClicked = () => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
       });
     }
   };
@@ -26,17 +58,34 @@ class MapContainer extends React.Component {
         <button type="button" onClick={this.showMap}>
           {this.state.visible ? 'Hide Map' : 'Show Map'}
         </button>
+
         <Map
           google={this.props.google}
-          zoom={14}
+          zoom={5}
           visible={this.state.visible}
           initialCenter={{
-            lat: 19.4267261,
+            lat: 19.42672619,
             lng: -99.1718706,
           }}
+          onClick={this.onMapClicked}
         >
-          <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
-          <ConsoleLog>{this.state.visible}</ConsoleLog>
+          {this.state.locations.map(venue => (
+            <Marker
+              key={venue.venueName}
+              position={{ lat: venue.venueLat, lng: venue.venueLon }}
+              onClick={this.onMarkerClick}
+              name={venue.venueName}
+            />
+          ))}
+
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
         </Map>
       </>
     );
