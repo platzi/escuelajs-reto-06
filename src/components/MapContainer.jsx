@@ -59,7 +59,7 @@ class MapContainer extends React.Component {
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}>
                   <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
+                    <h2 className="map-InfoWindow">{this.state.selectedPlace.name}</h2>
                   </div>
               </InfoWindow>
           </Map>
