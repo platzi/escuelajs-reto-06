@@ -1,0 +1,62 @@
+* {
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+
+html {box-sizing: border-box;}
+
+
+body {
+    width: 100%;
+    margin: 0;
+}
+
+
+
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    padding-right: 35px;
+    padding-left: 35px;
+    color: #ddd;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0.5em;
+    border: 1px solid transparent;
+    background-color: #0784c7;
+    transition: 250ms ease-in;
+    transition-property: background, transform, color, border-color;
+}
+
+
+
+.btn--hidden {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    margin: 35px;
+    background-color: #09bd78;
+}
+
+
+
+/* Efecto para el boton de mostart */
+.btn--is-desactive-view {transition-delay: 350ms; transform: translate(-50%, -50%) scale(1);}
+.btn--is-active-view {transform: translate(-50%, -50%) scale(0);}
+
+
+/* Efecto para el boton de ocultar */
+.btn--is-desactive-hidden {
+    transition-delay: 350ms;
+    transform: scale(1);
+}
+.btn--is-active-hidden {transform: scale(0);}
