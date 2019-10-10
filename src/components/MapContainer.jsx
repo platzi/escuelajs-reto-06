@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 const MapContainer = ({ google }) => {
   
   const [location, setLocation] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   useEffect (() => {
     fetch('http://localhost:3000/locations')
@@ -14,15 +15,23 @@ const MapContainer = ({ google }) => {
   return (
     <Map
       google={google}
-      zoom={5}
-      initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+      zoom={4}
+      initialCenter={{ lat: 13.0000000, lng: -85.0000000 }}
     >
       {location.map((item) => (
         <Marker
           key={item.id}
           position={{ lat: item.venueLat, lng: item.venueLon }}
+          onClick={() => {setSelectedLocation(item)}}
         />
       ))}
+
+      {selectedLocation && (
+        <InfoWindow>
+          <div>Location</div>
+        </InfoWindow>
+      )}
+
     </Map>
   )
   

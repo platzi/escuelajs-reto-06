@@ -8,7 +8,7 @@ const App = () => {
   if(showMap === true){
     return (
       <div className="App">
-        <button type='button' onClick={() => setShowMap(false)}>Mostrar Mapa</button>
+        <button type='button' onClick={() => setShowMap(false)}>Ocultar Mapa</button>
         <MapContainer />
       </div>
     ) 
