@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 
 class MapContainer extends React.Component {
@@ -7,44 +7,84 @@ class MapContainer extends React.Component {
     super(props)
     this.state = { 
       show: false,
-      showInfoWindow: false, 
-      activeMarker: {}, 
+      showingInfoWindow: false,
+      activeMarker: {},
       selectedPlace: {},
-      locations:{} 
        }
   }
 
-  componentWillMount(){
-    console.log('component will mount') 
-    
+  handleClick = () => {
+    const { show } = this.state;
+    if (show) {
+      this.setState({
+        show: false,
+      })
+    } else {
+      this.setState({
+        show: true,
+      })
+    }
   }
-  componentDidMount() {
-    //console.log('component did mout')
-    const URL = 'http://localhost:3000/locations'
-    fetch(URL)
-      .then(response => response.json())
-      .then(response => this.setState({locations: response}))
-      //console.log(this.state.locations)
-}
 
+  onMarkerClick = (props, marker, e) => this.setState ( {
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true,
+  });
+
+  onMapClicked = props => {
+    if(this.state.showingInfoWindow){
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      })
+    }
+  };
+
+  showMakers = (locations) => {
+    return locations.map( (location ) => {
+      return (
+        <Marker 
+          onClick={this.onMarkerClick}
+          key={location.venueName}
+          position={{
+            lat: location.venueLat,
+            lng: location.venueLon
+          }}
+          name={location.venueName}
+        />     
+      )
+    });
+  };
+  
   render(){
-    console.log(this.state.locations[0]);
-    console.log(this.state.locations[1]);
+    const { google, locations} = this.props;
+    const { show } = this.state;
+    console.log(this.props.locations)
     return(
+ 
     
       <div>
         
-        <button id="button"name="button" className="button">Click me</button>
-       <Map className= "map"
+        <button id="button"name="button" className="button" onClick={this.handleClick}>Click me</button>
+       <Map onClick={this.onMapClicked}
+        className= "map"
+        visible={show}
         google={google}
-        zoom={5}
+        zoom={3}
         initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
       >
-        <Marker
-          position={{ lat: 19.4267261, lng: -99.1718706 }}
-        />
-        
-    </Map>
+         {this.showMakers(locations)}
+
+        <InfoWindow 
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
+        </Map>
       </div>
      
     )
