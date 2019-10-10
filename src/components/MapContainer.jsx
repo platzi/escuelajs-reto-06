@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import '../styles/components/MapContainer.styl';
 import gif from '../assets/static/Click.gif';
 
-export class MapContainer extends React.Component {
+class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.toggleMap = this.toggleMap.bind(this);
@@ -17,7 +17,7 @@ export class MapContainer extends React.Component {
   }
   
   render() {
-    const { google } = this.props;
+    const { google, locations } = this.props;
     const { show } = this.state;
     return (
       <>
@@ -29,8 +29,13 @@ export class MapContainer extends React.Component {
               zoom={5}
               initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
             >
-              <Marker position={{ lat: 19.4267261, lng: -99.1718706 }} />
-              <Marker position={{ lat: 4.6560716, lng: -74.0595918 }} />
+              {locations.map((location, key) => (
+                <Marker 
+                  key={key}
+                  position={{ lat: location.venueLat, lng: location.venueLon }}
+                  name={location.venueName}
+                />
+              ))}
             </Map>
         ) : (
           <div>
