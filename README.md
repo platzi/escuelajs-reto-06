@@ -1,6 +1,10 @@
 # Escuelajs-reto-06
 Reto 6 Octubre 5: Curso Práctico de React JS
 
+# Archivo package.json
+
+Se modifica el archivo package.json cambiando las dependencias de babel, css-loader, html-loader, style-loader ,stylus y webpack de producción a desarrollo, en base a la documentación estas dependencias deben de ir instaladas para desarrollo.
+
 ## Platzi Maps
 
 Tenemos un proyecto web, donde debemos trabajar con la API de Google de mapas, tenemos que mostrar en un Mapa las ubicaciones de las oficinas de Platzi.
