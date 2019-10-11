@@ -28,7 +28,7 @@ npm run build
 ```
 
 ### Documentación
-Importar React y el paquete [google-maps-react](https://www.npmjs.com/package/google-maps-react)
+Importar React, [node-fetch](https://www.npmjs.com/package/node-fetch) y el paquete [google-maps-react](https://www.npmjs.com/package/google-maps-react)
 
 ```javascript
 import React from 'react';
