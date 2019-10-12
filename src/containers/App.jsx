@@ -1,13 +1,13 @@
 import React from 'react';
-import MapContainer from "../components/MapContainer";
+import Header from '../components/Header';
+import Contact from '../components/Contact';
 import '../styles/containers/App.styl';
 
-const App = () => {
-  return (
-    <div className="App">
-      <MapContainer />
-    </div>
+const App = () => (
+  <React.Fragment>
+    <Header />
+    <Contact />
+  </React.Fragment>
   )
-};
 
 export default App;
