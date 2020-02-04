@@ -11,6 +11,13 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    open: 'google chrome',
+    port: 9001,
+    hot: true,
+},
   module: {
     rules: [
       {
