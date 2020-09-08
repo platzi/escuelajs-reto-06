@@ -5,6 +5,7 @@ import '../styles/containers/App.styl';
 const App = () => {
   return (
     <div className="App">
+      <h1>Mapa Platzi</h1>
       <MapContainer />
     </div>
   )
