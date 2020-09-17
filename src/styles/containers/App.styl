@@ -1,8 +1,49 @@
-body
-  background-color white
-  margin 0
-  padding 0
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: #c4c4c4;
+}
 
-section
-  margin 0
-  paddin 0
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+section {
+  margin: 0;
+  padding: 0;
+}
+.btn-hide, .btn-show {
+  width: 70px;
+  height: 40px;
+  position: relative;
+  left: calc(100vw / 2 - 35px);
+  top: 550px;
+  font-size: 18px;
+  background-color: #fff;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 5px .1px rgb(200, 200, 200, .1);
+  outline: none;
+  cursor: pointer;
+}
+.btn-show {
+  width: 140px;
+  height: 80px;
+  top: calc(100vh / 2 - 70px);
+  left: calc(100vw / 2 - 40px);
+  font-size: 25px;
+  font-weight: 600;
+}
+button:active {
+  transform: scale(.9);
+}
+button:hover {
+  background-color: rgb(240, 240, 240);
+}
+.Infor {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: #fff;
+}
