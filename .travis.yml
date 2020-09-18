@@ -1,7 +1,24 @@
-language: node_jsz
-node_js: 9
-sudo: false
-install:
-  - npm install
+language: node_js
+os:
+  - linux
+cache:
+  - node_modules
+  - ~/.npm
+node_js:
+  - 12
+git:
+  depth: 3
+
 script:
-  - npm run build
+  - yarn build
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  keep-history: true
+  github-token: $GITHUB_TOKEN
+  local-dir: dist/
+  target-branch: gh-pages
+  commit_message: 'deploy del proyecto'
+  on:
+    branch: master
