@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 class MapContainer extends React.Component {
 
@@ -27,7 +27,7 @@ class MapContainer extends React.Component {
 
     const { google, coord } = this.props;
     const { show } = this.state;
-    
+
     return(
       <>
         <Map
@@ -40,14 +40,7 @@ class MapContainer extends React.Component {
             <Marker
               position={{ lat: item.venueLat, lng: item.venueLon }}
               key={i}
-            >
-              <InfoWindow
-                visible={show}
-              >
-                <p className=''>{item.venueName}</p>
-              </InfoWindow>
-            </Marker>
-
+            />
         ))}
         </Map>
         {show ? (

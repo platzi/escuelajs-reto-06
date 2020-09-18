@@ -1,4 +1,4 @@
-language: node_js
+language: node_jsz
 node_js: 9
 sudo: false
 install:
