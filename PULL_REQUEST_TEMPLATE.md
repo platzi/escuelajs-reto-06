@@ -1,16 +1,18 @@
 ## DESCRIPTION
 
-Solución al reto 05 de Escuela de JavaScript
+Solución al reto 06 de Escuela de JavaScript
 
-Nombre:
-Usuario Platzi:
+Nombre: Samuel Gonzalez
+Usuario Platzi: Xame
 
 ## Ciudad
-- [ ] Ciudad de México
+
+- [ X ] Ciudad de México
 - [ ] Bogotá
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
-  - [ ] Cuarto Problema (Opcional)
+
+- [ ] Primer problema
+- [ ] Segundo problema
+- [ ] Tercer problema
+- [ ] Cuarto Problema (Opcional)
